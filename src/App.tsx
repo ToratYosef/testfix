@@ -36,6 +36,7 @@ import pdfWorker from 'pdfjs-dist/build/pdf.worker.mjs?url';
 pdfjs.GlobalWorkerOptions.workerSrc = pdfWorker;
 
 type Screen = 'START' | 'QUIZ' | 'END';
+const QUIZ_CACHE_KEY = 'testmaster.quizCache.v1';
 
 export default function App() {
   const SECRET_CODE = 'hannahfreue';
@@ -86,6 +87,39 @@ export default function App() {
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [screen]);
+
+  useEffect(() => {
+    try {
+      const cached = localStorage.getItem(QUIZ_CACHE_KEY);
+      if (!cached) return;
+
+      const parsed = JSON.parse(cached) as { quizData?: Question[]; questionCount?: string };
+
+      if (Array.isArray(parsed.quizData) && parsed.quizData.length > 0) {
+        setQuizData(parsed.quizData);
+      }
+
+      if (typeof parsed.questionCount === 'string') {
+        setQuestionCount(parsed.questionCount);
+      }
+    } catch (error) {
+      console.error('Failed to restore cached quiz data:', error);
+    }
+  }, []);
+
+  useEffect(() => {
+    try {
+      localStorage.setItem(
+        QUIZ_CACHE_KEY,
+        JSON.stringify({
+          quizData,
+          questionCount,
+        })
+      );
+    } catch (error) {
+      console.error('Failed to cache quiz data:', error);
+    }
+  }, [quizData, questionCount]);
 
   const currentQuestion = quizData[currentIndex];
 
