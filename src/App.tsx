@@ -132,7 +132,7 @@ export default function App() {
 
     const parsedCount = Number(questionCount);
     if (!questionCount.trim() || !Number.isInteger(parsedCount) || parsedCount < 1 || parsedCount > 20) {
-      setUploadError('Please enter a question count between 1 and 20.');
+      setUploadError('Please enter a question count between 1 and 500.');
       return;
     }
 
@@ -143,7 +143,7 @@ export default function App() {
       const questions = await generateQuestionsFromPDF(text, parsedCount);
       setQuizData(questions);
     } catch (err) {
-      setUploadError("Failed to process PDF or generate questions.");
+      setUploadError(err instanceof Error ? err.message : "Failed to process PDF or generate questions.");
       console.error(err);
     } finally {
       setIsGenerating(false);
