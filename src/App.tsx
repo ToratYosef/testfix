@@ -195,6 +195,13 @@ export default function App() {
     }
   };
 
+  const canRetryPdfGeneration =
+    !!selectedPdfFile &&
+    !!questionCount.trim() &&
+    Number.isInteger(Number(questionCount)) &&
+    Number(questionCount) >= 1 &&
+    Number(questionCount) <= 500;
+
   const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (!file) return;
@@ -413,9 +420,20 @@ export default function App() {
               </div>
 
               {uploadError && (
-                <div className="max-w-md mx-auto flex items-center gap-2 p-4 bg-rose-50 text-rose-600 rounded-2xl text-sm font-medium">
-                  <AlertCircle className="w-5 h-5 shrink-0" />
-                  {uploadError}
+                <div className="max-w-md mx-auto p-4 bg-rose-50 text-rose-600 rounded-2xl text-sm font-medium space-y-3">
+                  <div className="flex items-center gap-2">
+                    <AlertCircle className="w-5 h-5 shrink-0" />
+                    <span>{uploadError}</span>
+                  </div>
+                  {canRetryPdfGeneration && (
+                    <button
+                      onClick={handleGenerateFromPdf}
+                      disabled={isGenerating}
+                      className="w-full bg-rose-600 text-white py-2.5 rounded-xl font-bold hover:bg-rose-700 transition-all disabled:opacity-50"
+                    >
+                      {isGenerating ? 'Retrying...' : 'Try Again'}
+                    </button>
+                  )}
                 </div>
               )}
 
