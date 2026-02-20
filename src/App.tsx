@@ -36,6 +36,7 @@ import pdfWorker from 'pdfjs-dist/build/pdf.worker.mjs?url';
 pdfjs.GlobalWorkerOptions.workerSrc = pdfWorker;
 
 type Screen = 'START' | 'QUIZ' | 'END';
+type SourceType = 'PDF' | 'IMAGE';
 const QUIZ_CACHE_KEY = 'testmaster.quizCache.v1';
 const SUPPORTED_IMAGE_MIME_TYPES = new Set(['image/png', 'image/jpeg', 'image/webp']);
 const SUPPORTED_IMAGE_EXTENSIONS = new Set(['png', 'jpg', 'jpeg', 'webp']);
@@ -56,6 +57,8 @@ export default function App() {
   const [isGenerating, setIsGenerating] = useState(false);
   const [questionCount, setQuestionCount] = useState('');
   const [selectedSourceFile, setSelectedSourceFile] = useState<File | null>(null);
+  const [selectedSourceType, setSelectedSourceType] = useState<SourceType | null>(null);
+  const [showSourceModal, setShowSourceModal] = useState(false);
   
   // Secret code state
   const [typedCode, setTypedCode] = useState('');
@@ -163,31 +166,42 @@ export default function App() {
     return fullText;
   };
 
-  const isSupportedSourceFile = (file: File): boolean => {
+  const isPdfFile = (file: File): boolean => {
     if (file.type === 'application/pdf') return true;
+    return file.name.toLowerCase().endsWith('.pdf');
+  };
+
+  const isImageFile = (file: File): boolean => {
     if (SUPPORTED_IMAGE_MIME_TYPES.has(file.type)) return true;
 
     const extension = file.name.split('.').pop()?.toLowerCase();
     return !!extension && SUPPORTED_IMAGE_EXTENSIONS.has(extension);
   };
 
-  const isPdfFile = (file: File): boolean => {
-    if (file.type === 'application/pdf') return true;
-    return file.name.toLowerCase().endsWith('.pdf');
-  };
-
-  const handleSourceUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleSourceUpload = (event: React.ChangeEvent<HTMLInputElement>, sourceType: SourceType) => {
     const file = event.target.files?.[0];
     if (!file) return;
 
-    if (!isSupportedSourceFile(file)) {
+    const invalidPdfSelection = sourceType === 'PDF' && !isPdfFile(file);
+    const invalidImageSelection = sourceType === 'IMAGE' && !isImageFile(file);
+
+    if (invalidPdfSelection) {
       setSelectedSourceFile(null);
-      setUploadError('Unsupported file type. Please upload PDF, PNG, JPG, JPEG, or WEBP.');
+      setUploadError('PDF upload only accepts .pdf files.');
       return;
     }
 
+    if (invalidImageSelection) {
+      setSelectedSourceFile(null);
+      setUploadError('Image upload only accepts PNG, JPG, JPEG, or WEBP files.');
+      return;
+    }
+
+    setSelectedSourceType(sourceType);
     setSelectedSourceFile(file);
+    setShowSourceModal(false);
     setUploadError(null);
+    event.target.value = '';
   };
 
   const handleGenerateFromSource = async () => {
@@ -205,7 +219,8 @@ export default function App() {
     setIsGenerating(true);
     setUploadError(null);
     try {
-      const text = isPdfFile(selectedSourceFile)
+      const usePdfExtraction = selectedSourceType === 'PDF' || isPdfFile(selectedSourceFile);
+      const text = usePdfExtraction
         ? await extractTextFromPDF(selectedSourceFile)
         : await extractTextFromImage(selectedSourceFile);
 
@@ -225,6 +240,7 @@ export default function App() {
 
   const canRetrySourceGeneration =
     !!selectedSourceFile &&
+    !!selectedSourceType &&
     !!questionCount.trim() &&
     Number.isInteger(Number(questionCount)) &&
     Number(questionCount) >= 1 &&
@@ -406,7 +422,7 @@ export default function App() {
                     />
                   </div>
 
-                  <label className="flex flex-col items-center justify-center w-full h-48 border-2 border-neutral-200 border-dashed rounded-[2rem] cursor-pointer hover:bg-neutral-50 transition-colors group">
+                  <div className="flex flex-col items-center justify-center w-full h-48 border-2 border-neutral-200 border-dashed rounded-[2rem] hover:bg-neutral-50 transition-colors group">
                     {isGenerating ? (
                       <div className="flex flex-col items-center">
                         <div className="w-12 h-12 border-4 border-indigo-600 border-t-transparent rounded-full animate-spin mb-4" />
@@ -417,21 +433,39 @@ export default function App() {
                         <div className="bg-neutral-100 p-4 rounded-2xl mb-4 group-hover:bg-indigo-50 transition-colors">
                           <Upload className="w-8 h-8 text-neutral-400 group-hover:text-indigo-600 transition-colors" />
                         </div>
-                        <p className="text-lg text-neutral-500 font-bold">Upload PDF or Image</p>
-                        <p className="text-sm text-neutral-400">PDF, PNG, JPG, JPEG, WEBP • AI reads text and builds questions</p>
+                        <p className="text-lg text-neutral-500 font-bold">Choose Upload Type</p>
+                        <p className="text-sm text-neutral-400">Select PDF or Image, then choose a file</p>
+                        <button
+                          onClick={() => setShowSourceModal(true)}
+                          disabled={isGenerating}
+                          className="mt-3 bg-indigo-600 text-white px-4 py-2 rounded-xl text-sm font-bold hover:bg-indigo-700 transition-all disabled:opacity-50"
+                        >
+                          Choose PDF or Image
+                        </button>
                         {selectedSourceFile && (
-                          <p className="text-xs text-neutral-500 mt-2 px-4 truncate max-w-full">{selectedSourceFile.name}</p>
+                          <p className="text-xs text-neutral-500 mt-2 px-4 truncate max-w-full">
+                            {selectedSourceType === 'PDF' ? 'PDF' : 'Image'}: {selectedSourceFile.name}
+                          </p>
                         )}
                       </div>
                     )}
                     <input
                       type="file"
                       className="hidden"
-                      accept=".pdf,.png,.jpg,.jpeg,.webp,application/pdf,image/png,image/jpeg,image/webp"
-                      onChange={handleSourceUpload}
+                      id="pdf-source-input"
+                      accept=".pdf,application/pdf"
+                      onChange={(event) => handleSourceUpload(event, 'PDF')}
                       disabled={isGenerating}
                     />
-                  </label>
+                    <input
+                      type="file"
+                      className="hidden"
+                      id="image-source-input"
+                      accept=".png,.jpg,.jpeg,.webp,image/png,image/jpeg,image/webp"
+                      onChange={(event) => handleSourceUpload(event, 'IMAGE')}
+                      disabled={isGenerating}
+                    />
+                  </div>
 
                   {selectedSourceFile && questionCount.trim() && (
                     <button
@@ -481,6 +515,46 @@ export default function App() {
 
               {/* Hidden JSON Modal */}
               <AnimatePresence>
+                {showSourceModal && (
+                  <div className="fixed inset-0 z-[100] flex items-center justify-center p-6 bg-black/40 backdrop-blur-sm">
+                    <motion.div
+                      initial={{ opacity: 0, scale: 0.9, y: 20 }}
+                      animate={{ opacity: 1, scale: 1, y: 0 }}
+                      exit={{ opacity: 0, scale: 0.9, y: 20 }}
+                      className="w-full max-w-md bg-white rounded-[2rem] shadow-2xl overflow-hidden"
+                    >
+                      <div className="p-8 space-y-6">
+                        <div className="flex items-center justify-between">
+                          <h3 className="text-2xl font-bold text-neutral-800">Choose Source Type</h3>
+                          <button
+                            onClick={() => setShowSourceModal(false)}
+                            className="text-neutral-400 hover:text-neutral-600 font-bold"
+                          >
+                            Close
+                          </button>
+                        </div>
+
+                        <div className="grid grid-cols-1 gap-3">
+                          <label
+                            htmlFor="pdf-source-input"
+                            className="cursor-pointer w-full border border-neutral-200 rounded-2xl p-4 text-left hover:bg-neutral-50 transition-colors"
+                          >
+                            <p className="font-bold text-neutral-800">PDF Upload</p>
+                            <p className="text-sm text-neutral-500">Allows only .pdf files</p>
+                          </label>
+                          <label
+                            htmlFor="image-source-input"
+                            className="cursor-pointer w-full border border-neutral-200 rounded-2xl p-4 text-left hover:bg-neutral-50 transition-colors"
+                          >
+                            <p className="font-bold text-neutral-800">Image Upload</p>
+                            <p className="text-sm text-neutral-500">Allows only PNG, JPG, JPEG, WEBP files</p>
+                          </label>
+                        </div>
+                      </div>
+                    </motion.div>
+                  </div>
+                )}
+
                 {showJsonModal && (
                   <div className="fixed inset-0 z-[100] flex items-center justify-center p-6 bg-black/40 backdrop-blur-sm">
                     <motion.div 
