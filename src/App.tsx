@@ -51,7 +51,7 @@ export default function App() {
   const [isLoadingAi, setIsLoadingAi] = useState(false);
   const [uploadError, setUploadError] = useState<string | null>(null);
   const [isGenerating, setIsGenerating] = useState(false);
-  const [questionCount, setQuestionCount] = useState(5);
+  const [questionCount, setQuestionCount] = useState('');
   
   // Secret code state
   const [typedCode, setTypedCode] = useState('');
@@ -130,11 +130,17 @@ export default function App() {
     const file = event.target.files?.[0];
     if (!file) return;
 
+    const parsedCount = Number(questionCount);
+    if (!questionCount.trim() || !Number.isInteger(parsedCount) || parsedCount < 1 || parsedCount > 20) {
+      setUploadError('Please enter a question count between 1 and 20.');
+      return;
+    }
+
     setIsGenerating(true);
     setUploadError(null);
     try {
       const text = await extractTextFromPDF(file);
-      const questions = await generateQuestionsFromPDF(text, questionCount);
+      const questions = await generateQuestionsFromPDF(text, parsedCount);
       setQuizData(questions);
     } catch (err) {
       setUploadError("Failed to process PDF or generate questions.");
@@ -314,7 +320,8 @@ export default function App() {
                     <input 
                       type="number" 
                       value={questionCount}
-                      onChange={(e) => setQuestionCount(Number(e.target.value))}
+                      onChange={(e) => setQuestionCount(e.target.value)}
+                      placeholder="Enter 1-20"
                       className="w-full p-4 bg-neutral-50 border border-neutral-200 rounded-2xl text-lg font-medium focus:ring-2 focus:ring-indigo-500 outline-none transition-all"
                       min="1" max="20"
                     />
@@ -687,7 +694,6 @@ export default function App() {
             </div>
             <div className="flex items-center gap-1">
               <Sparkles className="w-4 h-4" />
-              <span>Gemini Pro Powered</span>
             </div>
           </div>
           <p>© 2024 Test Master • AI Study Assistant</p>
