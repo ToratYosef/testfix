@@ -1,6 +1,15 @@
 import { GoogleGenAI, Type } from "@google/genai";
 
 const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
+const PRIMARY_MODEL = "gemini-3-flash-preview";
+const FALLBACK_MODELS = ["gemini-2.5-flash", "gemini-2.0-flash"];
+const RETRYABLE_STATUS_CODES = new Set([429, 500, 502, 503, 504]);
+const RETRYABLE_STATUS_TEXT = new Set([
+  "UNAVAILABLE",
+  "RESOURCE_EXHAUSTED",
+  "INTERNAL",
+  "DEADLINE_EXCEEDED",
+]);
 
 function getAIClient(): GoogleGenAI {
   if (!apiKey) {
@@ -8,6 +17,88 @@ function getAIClient(): GoogleGenAI {
   }
 
   return new GoogleGenAI({ apiKey });
+}
+
+function delay(ms: number): Promise<void> {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+function parseErrorPayload(error: unknown): { code?: number; status?: string; message?: string } {
+  if (!(error instanceof Error) || !error.message) {
+    return {};
+  }
+
+  try {
+    const parsed = JSON.parse(error.message);
+    if (parsed?.error && typeof parsed.error === "object") {
+      return {
+        code: typeof parsed.error.code === "number" ? parsed.error.code : undefined,
+        status: typeof parsed.error.status === "string" ? parsed.error.status : undefined,
+        message: typeof parsed.error.message === "string" ? parsed.error.message : undefined,
+      };
+    }
+  } catch {
+    // Non-JSON error message.
+  }
+
+  return {
+    message: error.message,
+  };
+}
+
+function isRetryableError(error: unknown): boolean {
+  const { code, status, message } = parseErrorPayload(error);
+  const normalizedStatus = status?.toUpperCase();
+
+  if (typeof code === "number" && RETRYABLE_STATUS_CODES.has(code)) {
+    return true;
+  }
+
+  if (normalizedStatus && RETRYABLE_STATUS_TEXT.has(normalizedStatus)) {
+    return true;
+  }
+
+  const text = message ?? (error instanceof Error ? error.message : "");
+  return /\b(503|429|unavailable|high demand|try again later|resource exhausted)\b/i.test(text);
+}
+
+async function generateWithResilience(params: {
+  contents: string;
+  config?: {
+    responseMimeType?: string;
+    responseSchema?: unknown;
+  };
+}): Promise<string> {
+  const ai = getAIClient();
+  const models = [PRIMARY_MODEL, ...FALLBACK_MODELS];
+  let lastError: unknown;
+
+  for (const model of models) {
+    for (let attempt = 0; attempt < 3; attempt++) {
+      try {
+        const response = await ai.models.generateContent({
+          model,
+          contents: params.contents,
+          ...(params.config ? { config: params.config } : {}),
+        });
+
+        return response.text || "";
+      } catch (error) {
+        lastError = error;
+        const shouldRetry = isRetryableError(error);
+        const isLastAttemptForModel = attempt === 2;
+
+        if (!shouldRetry || isLastAttemptForModel) {
+          break;
+        }
+
+        const backoffMs = 600 * 2 ** attempt + Math.floor(Math.random() * 200);
+        await delay(backoffMs);
+      }
+    }
+  }
+
+  throw lastError instanceof Error ? lastError : new Error("Gemini API request failed.");
 }
 
 export interface Question {
@@ -51,13 +142,8 @@ export async function getAIExplanation(params: ExplanationParams): Promise<strin
   `;
 
   try {
-    const ai = getAIClient();
-    const response = await ai.models.generateContent({
-      model: "gemini-3-flash-preview",
-      contents: prompt,
-    });
-
-    return response.text || "I'm sorry, I couldn't generate an explanation right now.";
+    const text = await generateWithResilience({ contents: prompt });
+    return text || "I'm sorry, I couldn't generate an explanation right now.";
   } catch (error) {
     console.error("Error generating AI explanation:", error);
     return "The AI is currently unavailable. The correct answer is: " + correctAnswer;
@@ -74,9 +160,7 @@ export async function generateQuestionsFromPDF(pdfText: string, count: number): 
   `;
 
   try {
-    const ai = getAIClient();
-    const response = await ai.models.generateContent({
-      model: "gemini-3-flash-preview",
+    const text = await generateWithResilience({
       contents: prompt,
       config: {
         responseMimeType: "application/json",
@@ -87,8 +171,8 @@ export async function generateQuestionsFromPDF(pdfText: string, count: number): 
             properties: {
               topic: { type: Type.STRING, description: "The specific topic or sub-heading of the question" },
               q: { type: Type.STRING, description: "The question text" },
-              a: { 
-                type: Type.ARRAY, 
+              a: {
+                type: Type.ARRAY,
                 items: { type: Type.STRING },
                 description: "Array of 4 possible answers"
               },
@@ -100,11 +184,15 @@ export async function generateQuestionsFromPDF(pdfText: string, count: number): 
       }
     });
 
-    return JSON.parse(response.text || "[]");
+    return JSON.parse(text || "[]");
   } catch (error) {
     console.error("Error generating questions:", error);
-    const message = error instanceof Error ? error.message : "Failed to generate questions from PDF.";
-    throw new Error(message);
+    if (isRetryableError(error)) {
+      throw new Error("Gemini is temporarily busy. Please retry in a few seconds.");
+    }
+
+    const { message } = parseErrorPayload(error);
+    throw new Error(message || "Failed to generate questions from PDF.");
   }
 }
 
@@ -129,13 +217,8 @@ export async function analyzeResults(results: UserResult[]): Promise<string> {
   `;
 
   try {
-    const ai = getAIClient();
-    const response = await ai.models.generateContent({
-      model: "gemini-3-flash-preview",
-      contents: prompt,
-    });
-
-    return response.text || "Analysis unavailable.";
+    const text = await generateWithResilience({ contents: prompt });
+    return text || "Analysis unavailable.";
   } catch (error) {
     console.error("Error analyzing results:", error);
     return "Could not analyze results at this time.";
