@@ -153,6 +153,15 @@ export default function App() {
   }, [isDgMode]);
 
   useEffect(() => {
+    if (typeof document === 'undefined') return;
+
+    const iconLink = document.querySelector("link[rel='icon']") as HTMLLinkElement | null;
+    if (!iconLink) return;
+
+    iconLink.href = `${import.meta.env.BASE_URL}${isDgMode ? 'dg.svg' : 'favicon.svg'}`;
+  }, [isDgMode]);
+
+  useEffect(() => {
     if (!isDgMode) return;
 
     let isCancelled = false;
@@ -475,9 +484,15 @@ export default function App() {
         <div className="max-w-4xl mx-auto flex items-center justify-between">
           <div className="flex items-center gap-2">
             <div className="bg-indigo-600 p-2 rounded-lg">
-              <BrainCircuit className="text-white w-6 h-6" />
+              {isDgMode ? (
+                <span className="text-white text-base font-extrabold leading-none">DG</span>
+              ) : (
+                <BrainCircuit className="text-white w-6 h-6" />
+              )}
             </div>
-            <h1 className="text-xl font-bold tracking-tight text-neutral-800">Test <span className="text-indigo-600">Master</span></h1>
+            <h1 className="text-xl font-bold tracking-tight text-neutral-800">
+              {isDgMode ? 'Designer Genes' : <>Test <span className="text-indigo-600">Master</span></>}
+            </h1>
           </div>
           {screen === 'QUIZ' && (
             <div className="flex items-center gap-4">
