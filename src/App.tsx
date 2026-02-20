@@ -38,6 +38,8 @@ pdfjs.GlobalWorkerOptions.workerSrc = pdfWorker;
 type Screen = 'START' | 'QUIZ' | 'END';
 
 export default function App() {
+  const SECRET_CODE = 'hannahfreue';
+
   const [quizData, setQuizData] = useState<Question[]>([]);
   const [jsonInput, setJsonInput] = useState('');
   const [screen, setScreen] = useState<Screen>('START');
@@ -66,17 +68,23 @@ export default function App() {
     if (screen !== 'START') return;
 
     const handleKeyDown = (e: KeyboardEvent) => {
-      const newCode = (typedCode + e.key).slice(-5);
-      setTypedCode(newCode);
-      if (newCode === 'hannahfreue') {
-        setShowJsonModal(true);
-        setTypedCode('');
-      }
+      if (e.key.length !== 1) return;
+
+      setTypedCode((previousCode) => {
+        const newCode = (previousCode + e.key.toLowerCase()).slice(-SECRET_CODE.length);
+
+        if (newCode.includes(SECRET_CODE)) {
+          setShowJsonModal(true);
+          return '';
+        }
+
+        return newCode;
+      });
     };
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [typedCode, screen]);
+  }, [screen]);
 
   const currentQuestion = quizData[currentIndex];
 
