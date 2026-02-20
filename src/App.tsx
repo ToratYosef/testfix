@@ -321,9 +321,9 @@ export default function App() {
                       type="number" 
                       value={questionCount}
                       onChange={(e) => setQuestionCount(e.target.value)}
-                      placeholder="Enter 1-20"
+                      placeholder="Enter 1-500"
                       className="w-full p-4 bg-neutral-50 border border-neutral-200 rounded-2xl text-lg font-medium focus:ring-2 focus:ring-indigo-500 outline-none transition-all"
-                      min="1" max="20"
+                      min="1" max="500"
                     />
                   </div>
 
