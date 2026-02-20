@@ -25,7 +25,7 @@ import {
   Search,
   History
 } from 'lucide-react';
-import { getAIExplanation, generateQuestionsFromPDF, analyzeResults, Question, UserResult } from './services/geminiService';
+import { getAIExplanation, generateQuestionsFromText, extractTextFromImage, analyzeResults, Question, UserResult } from './services/geminiService';
 import * as pdfjs from 'pdfjs-dist';
 
 // Import worker using Vite's ?url suffix for static asset path
@@ -37,6 +37,8 @@ pdfjs.GlobalWorkerOptions.workerSrc = pdfWorker;
 
 type Screen = 'START' | 'QUIZ' | 'END';
 const QUIZ_CACHE_KEY = 'testmaster.quizCache.v1';
+const SUPPORTED_IMAGE_MIME_TYPES = new Set(['image/png', 'image/jpeg', 'image/webp']);
+const SUPPORTED_IMAGE_EXTENSIONS = new Set(['png', 'jpg', 'jpeg', 'webp']);
 
 export default function App() {
   const SECRET_CODE = 'hannahfreue';
@@ -53,7 +55,7 @@ export default function App() {
   const [uploadError, setUploadError] = useState<string | null>(null);
   const [isGenerating, setIsGenerating] = useState(false);
   const [questionCount, setQuestionCount] = useState('');
-  const [selectedPdfFile, setSelectedPdfFile] = useState<File | null>(null);
+  const [selectedSourceFile, setSelectedSourceFile] = useState<File | null>(null);
   
   // Secret code state
   const [typedCode, setTypedCode] = useState('');
@@ -161,17 +163,36 @@ export default function App() {
     return fullText;
   };
 
-  const handlePdfUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const isSupportedSourceFile = (file: File): boolean => {
+    if (file.type === 'application/pdf') return true;
+    if (SUPPORTED_IMAGE_MIME_TYPES.has(file.type)) return true;
+
+    const extension = file.name.split('.').pop()?.toLowerCase();
+    return !!extension && SUPPORTED_IMAGE_EXTENSIONS.has(extension);
+  };
+
+  const isPdfFile = (file: File): boolean => {
+    if (file.type === 'application/pdf') return true;
+    return file.name.toLowerCase().endsWith('.pdf');
+  };
+
+  const handleSourceUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (!file) return;
 
-    setSelectedPdfFile(file);
+    if (!isSupportedSourceFile(file)) {
+      setSelectedSourceFile(null);
+      setUploadError('Unsupported file type. Please upload PDF, PNG, JPG, JPEG, or WEBP.');
+      return;
+    }
+
+    setSelectedSourceFile(file);
     setUploadError(null);
   };
 
-  const handleGenerateFromPdf = async () => {
-    if (!selectedPdfFile) {
-      setUploadError('Please upload a PDF file first.');
+  const handleGenerateFromSource = async () => {
+    if (!selectedSourceFile) {
+      setUploadError('Please upload a PDF or image file first.');
       return;
     }
 
@@ -184,19 +205,26 @@ export default function App() {
     setIsGenerating(true);
     setUploadError(null);
     try {
-      const text = await extractTextFromPDF(selectedPdfFile);
-      const questions = await generateQuestionsFromPDF(text, parsedCount);
+      const text = isPdfFile(selectedSourceFile)
+        ? await extractTextFromPDF(selectedSourceFile)
+        : await extractTextFromImage(selectedSourceFile);
+
+      if (!text.trim()) {
+        throw new Error('No readable text was found in the uploaded file. Try another image or PDF.');
+      }
+
+      const questions = await generateQuestionsFromText(text, parsedCount);
       setQuizData(questions);
     } catch (err) {
-      setUploadError(err instanceof Error ? err.message : "Failed to process PDF or generate questions.");
+      setUploadError(err instanceof Error ? err.message : "Failed to process the file or generate questions.");
       console.error(err);
     } finally {
       setIsGenerating(false);
     }
   };
 
-  const canRetryPdfGeneration =
-    !!selectedPdfFile &&
+  const canRetrySourceGeneration =
+    !!selectedSourceFile &&
     !!questionCount.trim() &&
     Number.isInteger(Number(questionCount)) &&
     Number(questionCount) >= 1 &&
@@ -355,16 +383,15 @@ export default function App() {
                   The Ultimate <span className="text-indigo-600">Study Companion</span>
                 </h2>
                 <p className="text-xl text-neutral-600 max-w-xl mx-auto">
-                  Generate quizzes from PDFs!! Get deep AI analysis of your performance.
+                  Generate quizzes from PDFs and images of handwritten or typed notes.
                 </p>
               </div>
 
               <div className="max-w-md mx-auto w-full">
-                {/* PDF Generation - Now the primary focus */}
                 <div className="w-full p-8 bg-white border border-neutral-200 rounded-[2rem] shadow-sm space-y-6">
                   <div className="flex items-center gap-2 text-neutral-600">
                     <FileText className="w-6 h-6" />
-                    <span className="font-bold text-sm uppercase tracking-wider">Generate from PDF</span>
+                    <span className="font-bold text-sm uppercase tracking-wider">Generate from File</span>
                   </div>
                   
                   <div className="space-y-2 text-left">
@@ -390,19 +417,25 @@ export default function App() {
                         <div className="bg-neutral-100 p-4 rounded-2xl mb-4 group-hover:bg-indigo-50 transition-colors">
                           <Upload className="w-8 h-8 text-neutral-400 group-hover:text-indigo-600 transition-colors" />
                         </div>
-                        <p className="text-lg text-neutral-500 font-bold">Upload Study PDF</p>
-                        <p className="text-sm text-neutral-400">PDF will be analyzed by AI</p>
-                        {selectedPdfFile && (
-                          <p className="text-xs text-neutral-500 mt-2 px-4 truncate max-w-full">{selectedPdfFile.name}</p>
+                        <p className="text-lg text-neutral-500 font-bold">Upload PDF or Image</p>
+                        <p className="text-sm text-neutral-400">PDF, PNG, JPG, JPEG, WEBP • AI reads text and builds questions</p>
+                        {selectedSourceFile && (
+                          <p className="text-xs text-neutral-500 mt-2 px-4 truncate max-w-full">{selectedSourceFile.name}</p>
                         )}
                       </div>
                     )}
-                    <input type="file" className="hidden" accept=".pdf" onChange={handlePdfUpload} disabled={isGenerating} />
+                    <input
+                      type="file"
+                      className="hidden"
+                      accept=".pdf,.png,.jpg,.jpeg,.webp,application/pdf,image/png,image/jpeg,image/webp"
+                      onChange={handleSourceUpload}
+                      disabled={isGenerating}
+                    />
                   </label>
 
-                  {selectedPdfFile && questionCount.trim() && (
+                  {selectedSourceFile && questionCount.trim() && (
                     <button
-                      onClick={handleGenerateFromPdf}
+                      onClick={handleGenerateFromSource}
                       disabled={isGenerating}
                       className="w-full bg-indigo-600 text-white py-4 rounded-2xl font-bold hover:bg-indigo-700 transition-all disabled:opacity-50"
                     >
@@ -425,9 +458,9 @@ export default function App() {
                     <AlertCircle className="w-5 h-5 shrink-0" />
                     <span>{uploadError}</span>
                   </div>
-                  {canRetryPdfGeneration && (
+                  {canRetrySourceGeneration && (
                     <button
-                      onClick={handleGenerateFromPdf}
+                      onClick={handleGenerateFromSource}
                       disabled={isGenerating}
                       className="w-full bg-rose-600 text-white py-2.5 rounded-xl font-bold hover:bg-rose-700 transition-all disabled:opacity-50"
                     >

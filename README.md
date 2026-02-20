@@ -6,6 +6,8 @@
 
 This contains everything you need to run your app locally.
 
+The app can generate quizzes from uploaded PDFs and from image files (`.png`, `.jpg`, `.jpeg`, `.webp`) containing handwritten or typed notes.
+
 ## Run Locally
 
 **Prerequisites:**  Node.js

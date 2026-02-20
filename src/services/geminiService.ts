@@ -63,7 +63,7 @@ function isRetryableError(error: unknown): boolean {
 }
 
 async function generateWithResilience(params: {
-  contents: string;
+  contents: any;
   config?: {
     responseMimeType?: string;
     responseSchema?: unknown;
@@ -150,13 +150,76 @@ export async function getAIExplanation(params: ExplanationParams): Promise<strin
   }
 }
 
-export async function generateQuestionsFromPDF(pdfText: string, count: number): Promise<Question[]> {
+function fileToBase64Data(file: File): Promise<string> {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+
+    reader.onload = () => {
+      const result = reader.result;
+      if (typeof result !== "string") {
+        reject(new Error("Failed to read image data."));
+        return;
+      }
+
+      const base64 = result.split(",")[1];
+      if (!base64) {
+        reject(new Error("Invalid image data."));
+        return;
+      }
+
+      resolve(base64);
+    };
+
+    reader.onerror = () => reject(new Error("Failed to read image file."));
+    reader.readAsDataURL(file);
+  });
+}
+
+export async function extractTextFromImage(imageFile: File): Promise<string> {
+  const base64Data = await fileToBase64Data(imageFile);
+
   const prompt = `
-    Based on the following text extracted from a PDF, generate ${count} multiple-choice questions.
+    Transcribe all readable text from this image.
+
+    Rules:
+    - Return ONLY the extracted text.
+    - Preserve paragraph breaks and line breaks when possible.
+    - Do not summarize, explain, or add extra commentary.
+    - If there are headings or bullet points, keep their structure.
+  `;
+
+  try {
+    const text = await generateWithResilience({
+      contents: [
+        { text: prompt },
+        {
+          inlineData: {
+            mimeType: imageFile.type || "image/png",
+            data: base64Data,
+          },
+        },
+      ],
+    });
+
+    return text.trim();
+  } catch (error) {
+    console.error("Error extracting text from image:", error);
+    if (isRetryableError(error)) {
+      throw new Error("Gemini is temporarily busy. Please retry in a few seconds.");
+    }
+
+    const { message } = parseErrorPayload(error);
+    throw new Error(message || "Failed to extract text from image.");
+  }
+}
+
+export async function generateQuestionsFromText(sourceText: string, count: number): Promise<Question[]> {
+  const prompt = `
+    Based on the following study text, generate ${count} multiple-choice questions.
     Each question must have exactly 4 options and 1 correct answer.
     
     Text:
-    ${pdfText.substring(0, 15000)} // Limit text size for prompt
+    ${sourceText.substring(0, 15000)} // Limit text size for prompt
   `;
 
   try {
@@ -192,8 +255,12 @@ export async function generateQuestionsFromPDF(pdfText: string, count: number): 
     }
 
     const { message } = parseErrorPayload(error);
-    throw new Error(message || "Failed to generate questions from PDF.");
+    throw new Error(message || "Failed to generate questions from the uploaded file.");
   }
+}
+
+export async function generateQuestionsFromPDF(pdfText: string, count: number): Promise<Question[]> {
+  return generateQuestionsFromText(pdfText, count);
 }
 
 export async function analyzeResults(results: UserResult[]): Promise<string> {
