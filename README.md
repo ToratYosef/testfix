@@ -15,6 +15,12 @@ View your app in AI Studio: https://ai.studio/apps/7731950a-12c9-46ce-bd26-56652
 
 1. Install dependencies:
    `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
+2. Set `VITE_GEMINI_API_KEY` in `.env.local` to your Gemini API key
 3. Run the app:
    `npm run dev`
+
+## Deploy to GitHub Pages
+
+1. Add a repository secret named `VITE_GEMINI_API_KEY` with your Gemini API key.
+2. In GitHub repo settings, set Pages source to **GitHub Actions**.
+3. Push to `main` to trigger `.github/workflows/deploy.yml`.

@@ -1,6 +1,14 @@
 import { GoogleGenAI, Type } from "@google/genai";
 
-const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
+const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
+
+function getAIClient(): GoogleGenAI {
+  if (!apiKey) {
+    throw new Error("Missing Gemini API key. Set VITE_GEMINI_API_KEY.");
+  }
+
+  return new GoogleGenAI({ apiKey });
+}
 
 export interface Question {
   topic: string;
@@ -43,6 +51,7 @@ export async function getAIExplanation(params: ExplanationParams): Promise<strin
   `;
 
   try {
+    const ai = getAIClient();
     const response = await ai.models.generateContent({
       model: "gemini-3-flash-preview",
       contents: prompt,
@@ -65,6 +74,7 @@ export async function generateQuestionsFromPDF(pdfText: string, count: number): 
   `;
 
   try {
+    const ai = getAIClient();
     const response = await ai.models.generateContent({
       model: "gemini-3-flash-preview",
       contents: prompt,
@@ -93,7 +103,8 @@ export async function generateQuestionsFromPDF(pdfText: string, count: number): 
     return JSON.parse(response.text || "[]");
   } catch (error) {
     console.error("Error generating questions:", error);
-    throw new Error("Failed to generate questions from PDF.");
+    const message = error instanceof Error ? error.message : "Failed to generate questions from PDF.";
+    throw new Error(message);
   }
 }
 
@@ -118,6 +129,7 @@ export async function analyzeResults(results: UserResult[]): Promise<string> {
   `;
 
   try {
+    const ai = getAIClient();
     const response = await ai.models.generateContent({
       model: "gemini-3-flash-preview",
       contents: prompt,
