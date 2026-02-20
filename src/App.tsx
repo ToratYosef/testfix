@@ -355,7 +355,7 @@ export default function App() {
                   The Ultimate <span className="text-indigo-600">Study Companion</span>
                 </h2>
                 <p className="text-xl text-neutral-600 max-w-xl mx-auto">
-                  Generate quizzes from PDFs, upload JSON, or paste text. Get deep AI analysis of your performance.
+                  Generate quizzes from PDFs!! Get deep AI analysis of your performance.
                 </p>
               </div>
 
