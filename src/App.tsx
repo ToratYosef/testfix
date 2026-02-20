@@ -52,6 +52,7 @@ export default function App() {
   const [uploadError, setUploadError] = useState<string | null>(null);
   const [isGenerating, setIsGenerating] = useState(false);
   const [questionCount, setQuestionCount] = useState('');
+  const [selectedPdfFile, setSelectedPdfFile] = useState<File | null>(null);
   
   // Secret code state
   const [typedCode, setTypedCode] = useState('');
@@ -126,12 +127,22 @@ export default function App() {
     return fullText;
   };
 
-  const handlePdfUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handlePdfUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (!file) return;
 
+    setSelectedPdfFile(file);
+    setUploadError(null);
+  };
+
+  const handleGenerateFromPdf = async () => {
+    if (!selectedPdfFile) {
+      setUploadError('Please upload a PDF file first.');
+      return;
+    }
+
     const parsedCount = Number(questionCount);
-    if (!questionCount.trim() || !Number.isInteger(parsedCount) || parsedCount < 1 || parsedCount > 20) {
+    if (!questionCount.trim() || !Number.isInteger(parsedCount) || parsedCount < 1 || parsedCount > 500) {
       setUploadError('Please enter a question count between 1 and 500.');
       return;
     }
@@ -139,7 +150,7 @@ export default function App() {
     setIsGenerating(true);
     setUploadError(null);
     try {
-      const text = await extractTextFromPDF(file);
+      const text = await extractTextFromPDF(selectedPdfFile);
       const questions = await generateQuestionsFromPDF(text, parsedCount);
       setQuizData(questions);
     } catch (err) {
@@ -340,10 +351,23 @@ export default function App() {
                         </div>
                         <p className="text-lg text-neutral-500 font-bold">Upload Study PDF</p>
                         <p className="text-sm text-neutral-400">PDF will be analyzed by AI</p>
+                        {selectedPdfFile && (
+                          <p className="text-xs text-neutral-500 mt-2 px-4 truncate max-w-full">{selectedPdfFile.name}</p>
+                        )}
                       </div>
                     )}
                     <input type="file" className="hidden" accept=".pdf" onChange={handlePdfUpload} disabled={isGenerating} />
                   </label>
+
+                  {selectedPdfFile && questionCount.trim() && (
+                    <button
+                      onClick={handleGenerateFromPdf}
+                      disabled={isGenerating}
+                      className="w-full bg-indigo-600 text-white py-4 rounded-2xl font-bold hover:bg-indigo-700 transition-all disabled:opacity-50"
+                    >
+                      {isGenerating ? 'Generating Questions...' : 'Generate Questions'}
+                    </button>
+                  )}
 
                   {quizData.length > 0 && !uploadError && (
                     <div className="flex items-center gap-2 p-4 bg-emerald-50 text-emerald-600 rounded-2xl text-sm font-bold">
