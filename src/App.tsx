@@ -44,7 +44,7 @@ const SUPPORTED_IMAGE_EXTENSIONS = new Set(['png', 'jpg', 'jpeg', 'webp']);
 
 export default function App() {
   const SECRET_CODE = 'hannahfreue';
-  const isDgMode = typeof window !== 'undefined' && window.location.pathname.startsWith('/dg');
+  const isDgMode = typeof window !== 'undefined' && /(^|\/)dg(\/|$)/.test(window.location.pathname);
 
   const [quizData, setQuizData] = useState<Question[]>([]);
   const [jsonInput, setJsonInput] = useState('');
@@ -145,6 +145,11 @@ export default function App() {
     } catch (error) {
       console.error('Failed to restore cached quiz data:', error);
     }
+  }, [isDgMode]);
+
+  useEffect(() => {
+    if (typeof document === 'undefined') return;
+    document.title = isDgMode ? 'Designer Genes' : 'Test Master';
   }, [isDgMode]);
 
   useEffect(() => {
@@ -521,7 +526,7 @@ export default function App() {
                   <div className="w-full p-8 bg-white border border-neutral-200 rounded-[2rem] shadow-sm space-y-6">
                     <div className="flex items-center gap-2 text-neutral-600">
                       <FileText className="w-6 h-6" />
-                      <span className="font-bold text-sm uppercase tracking-wider">DG Question Bank</span>
+                      <span className="font-bold text-sm uppercase tracking-wider">Designer Genes</span>
                     </div>
 
                     <div className="p-5 bg-neutral-50 border border-neutral-200 rounded-2xl text-left space-y-2">
