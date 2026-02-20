@@ -68,7 +68,7 @@ export default function App() {
     const handleKeyDown = (e: KeyboardEvent) => {
       const newCode = (typedCode + e.key).slice(-5);
       setTypedCode(newCode);
-      if (newCode === 'iloveher') {
+      if (newCode === 'hannahfreue') {
         setShowJsonModal(true);
         setTypedCode('');
       }
