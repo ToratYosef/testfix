@@ -38,11 +38,13 @@ pdfjs.GlobalWorkerOptions.workerSrc = pdfWorker;
 type Screen = 'START' | 'QUIZ' | 'END';
 type SourceType = 'PDF' | 'IMAGE';
 const QUIZ_CACHE_KEY = 'testmaster.quizCache.v1';
+const QUIZ_SESSION_KEY = 'testmaster.quizSession.v2';
 const SUPPORTED_IMAGE_MIME_TYPES = new Set(['image/png', 'image/jpeg', 'image/webp']);
 const SUPPORTED_IMAGE_EXTENSIONS = new Set(['png', 'jpg', 'jpeg', 'webp']);
 
 export default function App() {
   const SECRET_CODE = 'hannahfreue';
+  const isDgMode = typeof window !== 'undefined' && window.location.pathname.startsWith('/dg');
 
   const [quizData, setQuizData] = useState<Question[]>([]);
   const [jsonInput, setJsonInput] = useState('');
@@ -56,9 +58,10 @@ export default function App() {
   const [uploadError, setUploadError] = useState<string | null>(null);
   const [isGenerating, setIsGenerating] = useState(false);
   const [questionCount, setQuestionCount] = useState('');
-  const [selectedSourceFile, setSelectedSourceFile] = useState<File | null>(null);
+  const [selectedSourceFiles, setSelectedSourceFiles] = useState<File[]>([]);
   const [selectedSourceType, setSelectedSourceType] = useState<SourceType | null>(null);
   const [showSourceModal, setShowSourceModal] = useState(false);
+  const [isDgReady, setIsDgReady] = useState(false);
   
   // Secret code state
   const [typedCode, setTypedCode] = useState('');
@@ -95,36 +98,113 @@ export default function App() {
 
   useEffect(() => {
     try {
-      const cached = localStorage.getItem(QUIZ_CACHE_KEY);
-      if (!cached) return;
+      const cachedSession = localStorage.getItem(QUIZ_SESSION_KEY);
+      if (cachedSession) {
+        const parsed = JSON.parse(cachedSession) as {
+          mode?: 'dg' | 'regular';
+          quizData?: Question[];
+          questionCount?: string;
+          screen?: Screen;
+          currentIndex?: number;
+          score?: number;
+          selectedIdx?: number | null;
+          isAnswered?: boolean;
+          userResults?: UserResult[];
+          selectedSourceType?: SourceType | null;
+        };
 
-      const parsed = JSON.parse(cached) as { quizData?: Question[]; questionCount?: string };
+        const currentMode: 'dg' | 'regular' = isDgMode ? 'dg' : 'regular';
+        if (parsed.mode === currentMode) {
+          if (Array.isArray(parsed.quizData) && parsed.quizData.length > 0) {
+            setQuizData(parsed.quizData);
+          }
 
-      if (Array.isArray(parsed.quizData) && parsed.quizData.length > 0) {
-        setQuizData(parsed.quizData);
-      }
+          if (typeof parsed.questionCount === 'string') setQuestionCount(parsed.questionCount);
+          if (parsed.screen) setScreen(parsed.screen);
+          if (typeof parsed.currentIndex === 'number') setCurrentIndex(parsed.currentIndex);
+          if (typeof parsed.score === 'number') setScore(parsed.score);
+          if (typeof parsed.selectedIdx === 'number' || parsed.selectedIdx === null) setSelectedIdx(parsed.selectedIdx);
+          if (typeof parsed.isAnswered === 'boolean') setIsAnswered(parsed.isAnswered);
+          if (Array.isArray(parsed.userResults)) setUserResults(parsed.userResults);
+          if (parsed.selectedSourceType === 'PDF' || parsed.selectedSourceType === 'IMAGE' || parsed.selectedSourceType === null) {
+            setSelectedSourceType(parsed.selectedSourceType);
+          }
+        }
+      } else {
+        const cached = localStorage.getItem(QUIZ_CACHE_KEY);
+        if (!cached) return;
 
-      if (typeof parsed.questionCount === 'string') {
-        setQuestionCount(parsed.questionCount);
+        const parsed = JSON.parse(cached) as { quizData?: Question[]; questionCount?: string };
+        if (Array.isArray(parsed.quizData) && parsed.quizData.length > 0) {
+          setQuizData(parsed.quizData);
+        }
+        if (typeof parsed.questionCount === 'string') {
+          setQuestionCount(parsed.questionCount);
+        }
       }
     } catch (error) {
       console.error('Failed to restore cached quiz data:', error);
     }
-  }, []);
+  }, [isDgMode]);
+
+  useEffect(() => {
+    if (!isDgMode) return;
+
+    let isCancelled = false;
+
+    const loadDgQuestions = async () => {
+      try {
+        const dgUrl = new URL('./dg/dg.json', import.meta.url).href;
+        const response = await fetch(dgUrl);
+
+        if (!response.ok) {
+          throw new Error('Failed to load dg question bank.');
+        }
+
+        const dgData = (await response.json()) as Question[];
+        if (isCancelled) return;
+
+        if (!Array.isArray(dgData) || dgData.length === 0) {
+          throw new Error('dg question bank is empty or invalid.');
+        }
+
+        setQuizData((previous) => (previous.length > 0 ? previous : dgData));
+        setUploadError(null);
+        setIsDgReady(true);
+      } catch (error) {
+        if (isCancelled) return;
+        setUploadError(error instanceof Error ? error.message : 'Failed to load dg question bank.');
+      }
+    };
+
+    loadDgQuestions();
+
+    return () => {
+      isCancelled = true;
+    };
+  }, [isDgMode]);
 
   useEffect(() => {
     try {
       localStorage.setItem(
-        QUIZ_CACHE_KEY,
+        QUIZ_SESSION_KEY,
         JSON.stringify({
+          mode: isDgMode ? 'dg' : 'regular',
           quizData,
           questionCount,
+          screen,
+          currentIndex,
+          score,
+          selectedIdx,
+          isAnswered,
+          userResults,
+          selectedSourceType,
         })
       );
     } catch (error) {
       console.error('Failed to cache quiz data:', error);
     }
-  }, [quizData, questionCount]);
+  }, [quizData, questionCount, screen, currentIndex, score, selectedIdx, isAnswered, userResults, selectedSourceType, isDgMode]);
 
   const currentQuestion = quizData[currentIndex];
 
@@ -179,33 +259,43 @@ export default function App() {
   };
 
   const handleSourceUpload = (event: React.ChangeEvent<HTMLInputElement>, sourceType: SourceType) => {
-    const file = event.target.files?.[0];
-    if (!file) return;
+    const files: File[] = event.target.files ? Array.from(event.target.files) : [];
+    if (files.length === 0) return;
 
-    const invalidPdfSelection = sourceType === 'PDF' && !isPdfFile(file);
-    const invalidImageSelection = sourceType === 'IMAGE' && !isImageFile(file);
+    if (sourceType === 'PDF') {
+      const file = files[0];
+      if (!isPdfFile(file)) {
+        setSelectedSourceFiles([]);
+        setUploadError('PDF upload only accepts .pdf files.');
+        event.target.value = '';
+        return;
+      }
 
-    if (invalidPdfSelection) {
-      setSelectedSourceFile(null);
-      setUploadError('PDF upload only accepts .pdf files.');
+      setSelectedSourceType('PDF');
+      setSelectedSourceFiles([file]);
+      setShowSourceModal(false);
+      setUploadError(null);
+      event.target.value = '';
       return;
     }
 
+    const invalidImageSelection = files.some((file) => !isImageFile(file));
     if (invalidImageSelection) {
-      setSelectedSourceFile(null);
+      setSelectedSourceFiles([]);
       setUploadError('Image upload only accepts PNG, JPG, JPEG, or WEBP files.');
+      event.target.value = '';
       return;
     }
 
-    setSelectedSourceType(sourceType);
-    setSelectedSourceFile(file);
+    setSelectedSourceType('IMAGE');
+    setSelectedSourceFiles(files);
     setShowSourceModal(false);
     setUploadError(null);
     event.target.value = '';
   };
 
   const handleGenerateFromSource = async () => {
-    if (!selectedSourceFile) {
+    if (selectedSourceFiles.length === 0) {
       setUploadError('Please upload a PDF or image file first.');
       return;
     }
@@ -219,10 +309,10 @@ export default function App() {
     setIsGenerating(true);
     setUploadError(null);
     try {
-      const usePdfExtraction = selectedSourceType === 'PDF' || isPdfFile(selectedSourceFile);
+      const usePdfExtraction = selectedSourceType === 'PDF';
       const text = usePdfExtraction
-        ? await extractTextFromPDF(selectedSourceFile)
-        : await extractTextFromImage(selectedSourceFile);
+        ? await extractTextFromPDF(selectedSourceFiles[0])
+        : (await Promise.all(selectedSourceFiles.map((file) => extractTextFromImage(file)))).join('\n\n');
 
       if (!text.trim()) {
         throw new Error('No readable text was found in the uploaded file. Try another image or PDF.');
@@ -239,7 +329,7 @@ export default function App() {
   };
 
   const canRetrySourceGeneration =
-    !!selectedSourceFile &&
+    selectedSourceFiles.length > 0 &&
     !!selectedSourceType &&
     !!questionCount.trim() &&
     Number.isInteger(Number(questionCount)) &&
@@ -282,6 +372,23 @@ export default function App() {
     setUserResults([]);
     setAiAnalysis(null);
     setReviewIndex(null);
+  };
+
+  const handleExitQuiz = () => {
+    setScreen('START');
+    setCurrentIndex(0);
+    setScore(0);
+    setSelectedIdx(null);
+    setIsAnswered(false);
+    setAiExplanation(null);
+    setUserResults([]);
+    setAiAnalysis(null);
+    setReviewIndex(null);
+    try {
+      localStorage.removeItem(QUIZ_SESSION_KEY);
+    } catch (error) {
+      console.error('Failed to clear quiz session:', error);
+    }
   };
 
   const handleSelect = (idx: number) => {
@@ -372,6 +479,12 @@ export default function App() {
               <div className="text-sm font-medium text-neutral-500">
                 Question {currentIndex + 1} of {quizData.length}
               </div>
+              <button
+                onClick={handleExitQuiz}
+                className="text-xs font-bold bg-rose-600 text-white px-3 py-1.5 rounded-full hover:bg-rose-700 transition-all"
+              >
+                Exit
+              </button>
               <div className="h-2 w-32 bg-neutral-100 rounded-full overflow-hidden">
                 <motion.div 
                   className="h-full bg-indigo-600"
@@ -404,86 +517,111 @@ export default function App() {
               </div>
 
               <div className="max-w-md mx-auto w-full">
-                <div className="w-full p-8 bg-white border border-neutral-200 rounded-[2rem] shadow-sm space-y-6">
-                  <div className="flex items-center gap-2 text-neutral-600">
-                    <FileText className="w-6 h-6" />
-                    <span className="font-bold text-sm uppercase tracking-wider">Generate from File</span>
-                  </div>
-                  
-                  <div className="space-y-2 text-left">
-                    <label className="text-xs font-bold text-neutral-400 uppercase ml-1">Question Count</label>
-                    <input 
-                      type="number" 
-                      value={questionCount}
-                      onChange={(e) => setQuestionCount(e.target.value)}
-                      placeholder="Enter 1-500"
-                      className="w-full p-4 bg-neutral-50 border border-neutral-200 rounded-2xl text-lg font-medium focus:ring-2 focus:ring-indigo-500 outline-none transition-all"
-                      min="1" max="500"
-                    />
-                  </div>
+                {isDgMode ? (
+                  <div className="w-full p-8 bg-white border border-neutral-200 rounded-[2rem] shadow-sm space-y-6">
+                    <div className="flex items-center gap-2 text-neutral-600">
+                      <FileText className="w-6 h-6" />
+                      <span className="font-bold text-sm uppercase tracking-wider">DG Question Bank</span>
+                    </div>
 
-                  <div className="flex flex-col items-center justify-center w-full h-48 border-2 border-neutral-200 border-dashed rounded-[2rem] hover:bg-neutral-50 transition-colors group">
-                    {isGenerating ? (
-                      <div className="flex flex-col items-center">
-                        <div className="w-12 h-12 border-4 border-indigo-600 border-t-transparent rounded-full animate-spin mb-4" />
-                        <p className="text-sm font-medium text-neutral-500">Generating Questions...</p>
-                      </div>
-                    ) : (
-                      <div className="flex flex-col items-center justify-center pt-5 pb-6">
-                        <div className="bg-neutral-100 p-4 rounded-2xl mb-4 group-hover:bg-indigo-50 transition-colors">
-                          <Upload className="w-8 h-8 text-neutral-400 group-hover:text-indigo-600 transition-colors" />
-                        </div>
-                        <p className="text-lg text-neutral-500 font-bold">Choose Upload Type</p>
-                        <p className="text-sm text-neutral-400">Select PDF or Image, then choose a file</p>
-                        <button
-                          onClick={() => setShowSourceModal(true)}
-                          disabled={isGenerating}
-                          className="mt-3 bg-indigo-600 text-white px-4 py-2 rounded-xl text-sm font-bold hover:bg-indigo-700 transition-all disabled:opacity-50"
-                        >
-                          Choose PDF or Image
-                        </button>
-                        {selectedSourceFile && (
-                          <p className="text-xs text-neutral-500 mt-2 px-4 truncate max-w-full">
-                            {selectedSourceType === 'PDF' ? 'PDF' : 'Image'}: {selectedSourceFile.name}
-                          </p>
-                        )}
+                    <div className="p-5 bg-neutral-50 border border-neutral-200 rounded-2xl text-left space-y-2">
+                      <p className="text-sm text-neutral-500">Path: /dg</p>
+                      <p className="text-base font-semibold text-neutral-700">Generation is disabled in this mode.</p>
+                      <p className="text-sm text-neutral-500">Questions are loaded directly from src/dg/dg.json.</p>
+                    </div>
+
+                    {isDgReady && quizData.length > 0 && !uploadError && (
+                      <div className="flex items-center gap-2 p-4 bg-emerald-50 text-emerald-600 rounded-2xl text-sm font-bold">
+                        <CheckCircle2 className="w-5 h-5 shrink-0" />
+                        {quizData.length} Questions Ready
                       </div>
                     )}
-                    <input
-                      type="file"
-                      className="hidden"
-                      id="pdf-source-input"
-                      accept=".pdf,application/pdf"
-                      onChange={(event) => handleSourceUpload(event, 'PDF')}
-                      disabled={isGenerating}
-                    />
-                    <input
-                      type="file"
-                      className="hidden"
-                      id="image-source-input"
-                      accept=".png,.jpg,.jpeg,.webp,image/png,image/jpeg,image/webp"
-                      onChange={(event) => handleSourceUpload(event, 'IMAGE')}
-                      disabled={isGenerating}
-                    />
                   </div>
-
-                  {selectedSourceFile && questionCount.trim() && (
-                    <button
-                      onClick={handleGenerateFromSource}
-                      disabled={isGenerating}
-                      className="w-full bg-indigo-600 text-white py-4 rounded-2xl font-bold hover:bg-indigo-700 transition-all disabled:opacity-50"
-                    >
-                      {isGenerating ? 'Generating Questions...' : 'Generate Questions'}
-                    </button>
-                  )}
-
-                  {quizData.length > 0 && !uploadError && (
-                    <div className="flex items-center gap-2 p-4 bg-emerald-50 text-emerald-600 rounded-2xl text-sm font-bold">
-                      <CheckCircle2 className="w-5 h-5 shrink-0" />
-                      {quizData.length} Questions Ready
+                ) : (
+                  <div className="w-full p-8 bg-white border border-neutral-200 rounded-[2rem] shadow-sm space-y-6">
+                    <div className="flex items-center gap-2 text-neutral-600">
+                      <FileText className="w-6 h-6" />
+                      <span className="font-bold text-sm uppercase tracking-wider">Generate from File</span>
                     </div>
-                  )}
-                </div>
+                    
+                    <div className="space-y-2 text-left">
+                      <label className="text-xs font-bold text-neutral-400 uppercase ml-1">Question Count</label>
+                      <input 
+                        type="number" 
+                        value={questionCount}
+                        onChange={(e) => setQuestionCount(e.target.value)}
+                        placeholder="Enter 1-500"
+                        className="w-full p-4 bg-neutral-50 border border-neutral-200 rounded-2xl text-lg font-medium focus:ring-2 focus:ring-indigo-500 outline-none transition-all"
+                        min="1" max="500"
+                      />
+                    </div>
+
+                    <div className="flex flex-col items-center justify-center w-full h-48 border-2 border-neutral-200 border-dashed rounded-[2rem] hover:bg-neutral-50 transition-colors group">
+                      {isGenerating ? (
+                        <div className="flex flex-col items-center">
+                          <div className="w-12 h-12 border-4 border-indigo-600 border-t-transparent rounded-full animate-spin mb-4" />
+                          <p className="text-sm font-medium text-neutral-500">Generating Questions...</p>
+                        </div>
+                      ) : (
+                        <div className="flex flex-col items-center justify-center pt-5 pb-6">
+                          <div className="bg-neutral-100 p-4 rounded-2xl mb-4 group-hover:bg-indigo-50 transition-colors">
+                            <Upload className="w-8 h-8 text-neutral-400 group-hover:text-indigo-600 transition-colors" />
+                          </div>
+                          <p className="text-lg text-neutral-500 font-bold">Choose Upload Type</p>
+                          <p className="text-sm text-neutral-400">Select PDF or Image, then choose a file</p>
+                          <button
+                            onClick={() => setShowSourceModal(true)}
+                            disabled={isGenerating}
+                            className="mt-3 bg-indigo-600 text-white px-4 py-2 rounded-xl text-sm font-bold hover:bg-indigo-700 transition-all disabled:opacity-50"
+                          >
+                            Choose PDF or Image
+                          </button>
+                          {selectedSourceFiles.length > 0 && (
+                            <p className="text-xs text-neutral-500 mt-2 px-4 truncate max-w-full">
+                              {selectedSourceType === 'PDF'
+                                ? `PDF: ${selectedSourceFiles[0].name}`
+                                : `Images: ${selectedSourceFiles.length} selected`}
+                            </p>
+                          )}
+                        </div>
+                      )}
+                      <input
+                        type="file"
+                        className="hidden"
+                        id="pdf-source-input"
+                        accept=".pdf,application/pdf"
+                        onChange={(event) => handleSourceUpload(event, 'PDF')}
+                        disabled={isGenerating}
+                      />
+                      <input
+                        type="file"
+                        className="hidden"
+                        id="image-source-input"
+                        accept=".png,.jpg,.jpeg,.webp,image/png,image/jpeg,image/webp"
+                        multiple
+                        onChange={(event) => handleSourceUpload(event, 'IMAGE')}
+                        disabled={isGenerating}
+                      />
+                    </div>
+
+                    {selectedSourceFiles.length > 0 && questionCount.trim() && (
+                      <button
+                        onClick={handleGenerateFromSource}
+                        disabled={isGenerating}
+                        className="w-full bg-indigo-600 text-white py-4 rounded-2xl font-bold hover:bg-indigo-700 transition-all disabled:opacity-50"
+                      >
+                        {isGenerating ? 'Generating Questions...' : 'Generate Questions'}
+                      </button>
+                    )}
+
+                    {quizData.length > 0 && !uploadError && (
+                      <div className="flex items-center gap-2 p-4 bg-emerald-50 text-emerald-600 rounded-2xl text-sm font-bold">
+                        <CheckCircle2 className="w-5 h-5 shrink-0" />
+                        {quizData.length} Questions Ready
+                      </div>
+                    )}
+                  </div>
+                )}
               </div>
 
               {uploadError && (
@@ -492,7 +630,7 @@ export default function App() {
                     <AlertCircle className="w-5 h-5 shrink-0" />
                     <span>{uploadError}</span>
                   </div>
-                  {canRetrySourceGeneration && (
+                  {!isDgMode && canRetrySourceGeneration && (
                     <button
                       onClick={handleGenerateFromSource}
                       disabled={isGenerating}
@@ -547,7 +685,7 @@ export default function App() {
                             className="cursor-pointer w-full border border-neutral-200 rounded-2xl p-4 text-left hover:bg-neutral-50 transition-colors"
                           >
                             <p className="font-bold text-neutral-800">Image Upload</p>
-                            <p className="text-sm text-neutral-500">Allows only PNG, JPG, JPEG, WEBP files</p>
+                            <p className="text-sm text-neutral-500">Allows only PNG, JPG, JPEG, WEBP files (multiple allowed)</p>
                           </label>
                         </div>
                       </div>

@@ -1,0 +1,2426 @@
+[
+  {
+    "topic": "Mendelian Genetics",
+    "q": "Which statement best describes the Law of Segregation?",
+    "a": [
+      "Each gamete receives one allele of each gene (A or a).",
+      "Dominant alleles always mask recessive alleles.",
+      "Genes on different chromosomes are inherited together.",
+      "Both alleles are expressed equally in the phenotype."
+    ],
+    "correct": 0,
+    "explanation": "Each gamete gets only one allele per gene (A or a)."
+  },
+  {
+    "topic": "Mendelian Genetics",
+    "q": "What does the Law of Independent Assortment say?",
+    "a": [
+      "Genes on different chromosomes are inherited independently of each other.",
+      "Each gamete receives both alleles for every gene.",
+      "A recessive allele always masks a dominant allele.",
+      "Mitochondrial DNA is inherited from both parents equally."
+    ],
+    "correct": 0,
+    "explanation": "Genes on different chromosomes are inherited independently."
+  },
+  {
+    "topic": "Mendelian Genetics",
+    "q": "What is the Law of Dominance?",
+    "a": [
+      "Dominant allele masks recessive unless there are 2 recessive alleles.",
+      "Genes on the same chromosome assort independently.",
+      "Gametes always carry both alleles.",
+      "Only codominance exists in humans."
+    ],
+    "correct": 0,
+    "explanation": "Dominant allele masks recessive allele unless there are 2 recessive alleles."
+  },
+  {
+    "topic": "Mendelian Genetics",
+    "q": "For the shown Aa × Aa cross, what is the genotype ratio?",
+    "a": [
+      "25% AA, 50% Aa, 25% aa",
+      "3:1 dominant:recessive",
+      "9:3:3:1",
+      "1:1 only"
+    ],
+    "correct": 0,
+    "explanation": "Genotype ratio: 25% AA, 50% Aa, 25% aa. Phenotype: 75% dominant, 25% recessive (3:1)."
+  },
+  {
+    "topic": "Mendelian Genetics",
+    "q": "For Aa × Aa, what is the phenotype ratio?",
+    "a": [
+      "75% dominant, 25% recessive (3:1)",
+      "25% dominant, 75% recessive",
+      "9:3:3:1",
+      "1:2:1"
+    ],
+    "correct": 0,
+    "explanation": "Phenotype ratio is 75% dominant, 25% recessive (3:1)."
+  },
+  {
+    "topic": "Non-Mendelian Genetics",
+    "q": "What are linked genes?",
+    "a": [
+      "Genes located on the same chromosome inherited together.",
+      "Genes on different chromosomes inherited independently.",
+      "Genes that only appear in males.",
+      "Genes inherited only from mitochondria."
+    ],
+    "correct": 0,
+    "explanation": "Genes on the same chromosome are inherited together."
+  },
+  {
+    "topic": "Non-Mendelian Genetics",
+    "q": "Sex-linked traits are controlled by genes located on…",
+    "a": [
+      "Sex chromosomes",
+      "Only autosomes",
+      "Only mitochondria",
+      "Only chloroplasts"
+    ],
+    "correct": 0,
+    "explanation": "Genes located on sex chromosomes."
+  },
+  {
+    "topic": "Non-Mendelian Genetics",
+    "q": "Which best describes incomplete dominance?",
+    "a": [
+      "Dominant phenotype mixes with recessive (red+white→pink).",
+      "Both alleles are expressed equally (roan/AB).",
+      "One gene masks another at a different locus.",
+      "Only recessive alleles appear."
+    ],
+    "correct": 0,
+    "explanation": "Dominant phenotype mixes with recessive (ex: red + white flowers → pink)."
+  },
+  {
+    "topic": "Non-Mendelian Genetics",
+    "q": "What is codominance?",
+    "a": [
+      "Both alleles are expressed equally in phenotype (roan, AB blood).",
+      "Dominant allele always masks recessive allele.",
+      "Traits are inherited only from mother.",
+      "Genes on different chromosomes are inherited together."
+    ],
+    "correct": 0,
+    "explanation": "Both alleles expressed equally (roan, AB blood)."
+  },
+  {
+    "topic": "Non-Mendelian Genetics",
+    "q": "What does complementation testing tell you?",
+    "a": [
+      "Different genes if normal; same gene if still mutant.",
+      "Whether a trait is sex-linked.",
+      "Whether alleles assort independently.",
+      "Whether meiosis has nondisjunction."
+    ],
+    "correct": 0,
+    "explanation": "If two mutants crossed produce normal phenotype → mutations are in different genes. If still mutant → same gene."
+  },
+  {
+    "topic": "Non-Mendelian Genetics",
+    "q": "Non-nuclear inheritance refers to genes inherited from…",
+    "a": [
+      "Mitochondrial or chloroplast DNA (maternal inheritance).",
+      "Only paternal chromosomes.",
+      "Only autosomes.",
+      "Only X chromosome."
+    ],
+    "correct": 0,
+    "explanation": "Genes not from nuclear DNA (mitochondrial/chloroplast DNA), inherited from mother."
+  },
+  {
+    "topic": "Punnett Squares",
+    "q": "A monohybrid cross involves…",
+    "a": [
+      "1 characteristic",
+      "2 characteristics",
+      "3 characteristics",
+      "Only sex chromosomes"
+    ],
+    "correct": 0,
+    "explanation": "Crossing 1 characteristic (Bb × Bb). Genotype 1:2:1, phenotype 3:1."
+  },
+  {
+    "topic": "Punnett Squares",
+    "q": "Monohybrid (heterozygote × heterozygote) genotype ratio is…",
+    "a": [
+      "1:2:1",
+      "3:1",
+      "9:3:3:1",
+      "12:3:1"
+    ],
+    "correct": 0,
+    "explanation": "1:2:1 genotype ratio."
+  },
+  {
+    "topic": "Punnett Squares",
+    "q": "Monohybrid (heterozygote × heterozygote) phenotype ratio is…",
+    "a": [
+      "3:1",
+      "1:2:1",
+      "9:7",
+      "15:1"
+    ],
+    "correct": 0,
+    "explanation": "3:1 phenotype ratio."
+  },
+  {
+    "topic": "Punnett Squares",
+    "q": "A dihybrid cross involves…",
+    "a": [
+      "2 characteristics",
+      "1 characteristic",
+      "3 characteristics",
+      "Only mitochondrial genes"
+    ],
+    "correct": 0,
+    "explanation": "Crossing 2 characteristics (AaBb × AAbb). 9:3:3:1 phenotype ratio; 16 genotype combinations."
+  },
+  {
+    "topic": "Punnett Squares",
+    "q": "Classic dihybrid phenotype ratio is…",
+    "a": [
+      "9:3:3:1",
+      "3:1",
+      "1:2:1",
+      "9:7"
+    ],
+    "correct": 0,
+    "explanation": "9:3:3:1 phenotype ratio."
+  },
+  {
+    "topic": "Punnett Squares",
+    "q": "How many genotype combinations in a dihybrid cross Punnett square?",
+    "a": [
+      "16",
+      "4",
+      "8",
+      "64"
+    ],
+    "correct": 0,
+    "explanation": "16 genotype combinations."
+  },
+  {
+    "topic": "Punnett Squares",
+    "q": "For YyZz, which list matches FOIL gamete combinations?",
+    "a": [
+      "YZ, Yz, yZ, yz",
+      "YY, Yy, yY, yy",
+      "ZZ, Zz, zZ, zz",
+      "AB, Ab, aB only"
+    ],
+    "correct": 0,
+    "explanation": "Use FOIL to list gametes (e.g., YyZz → YZ, Yz, yZ, yz)."
+  },
+  {
+    "topic": "Punnett Squares",
+    "q": "A trihybrid cross has how many genotype combinations?",
+    "a": [
+      "64",
+      "16",
+      "8",
+      "4"
+    ],
+    "correct": 0,
+    "explanation": "Crossing 3 characteristics. 64 genotype combinations. Each parent can make 8 combinations."
+  },
+  {
+    "topic": "Punnett Squares",
+    "q": "In a trihybrid cross, each parent produces how many gamete combinations?",
+    "a": [
+      "8",
+      "4",
+      "16",
+      "64"
+    ],
+    "correct": 0,
+    "explanation": "Each parent genotype can create 8 combinations."
+  },
+  {
+    "topic": "Punnett Squares",
+    "q": "What rule is suggested for combining probabilities in trihybrid problems?",
+    "a": [
+      "P(A and B)=P(A)*P(B)",
+      "P(A or B)=P(A)*P(B)",
+      "p+q=1 only",
+      "2pq=q²"
+    ],
+    "correct": 0,
+    "explanation": "Find each allele probability separately, then multiply: P(A and B)=P(A)*P(B)."
+  },
+  {
+    "topic": "Pedigree Charts",
+    "q": "In pedigree charts, squares represent…",
+    "a": [
+      "Male",
+      "Female",
+      "Carrier only",
+      "Affected only"
+    ],
+    "correct": 0,
+    "explanation": "Squares=male, circles=female."
+  },
+  {
+    "topic": "Pedigree Charts",
+    "q": "Half-shaded shapes in a pedigree usually mean…",
+    "a": [
+      "Carrier",
+      "Affected",
+      "Unaffected",
+      "Unknown sex"
+    ],
+    "correct": 0,
+    "explanation": "Shaded=affected, unshaded=unaffected, half-shaded=carriers."
+  },
+  {
+    "topic": "Pedigree Charts",
+    "q": "If a trait affects many more males than females, it may be…",
+    "a": [
+      "Sex-linked",
+      "Strictly autosomal dominant",
+      "Always mitochondrial",
+      "Always incomplete dominance"
+    ],
+    "correct": 0,
+    "explanation": "If males affected more than females → may be sex-linked."
+  },
+  {
+    "topic": "Pedigree Charts",
+    "q": "If males and females are affected at similar rates, the trait may be…",
+    "a": [
+      "Autosomal",
+      "Definitely sex-linked",
+      "Definitely mitochondrial",
+      "Always recessive epistasis"
+    ],
+    "correct": 0,
+    "explanation": "If males and females affected equally → may be autosomal."
+  },
+  {
+    "topic": "Pedigree Charts",
+    "q": "A trait that skips generations is most likely…",
+    "a": [
+      "Recessive",
+      "Dominant",
+      "Codominant",
+      "Always sex-linked"
+    ],
+    "correct": 0,
+    "explanation": "If it skips generations → likely recessive."
+  },
+  {
+    "topic": "Pedigree Charts",
+    "q": "A trait appearing in every generation is most likely…",
+    "a": [
+      "Dominant",
+      "Recessive",
+      "Only mitochondrial",
+      "Only polygenic"
+    ],
+    "correct": 0,
+    "explanation": "If it appears in every generation → likely dominant."
+  },
+  {
+    "topic": "Pedigree Charts",
+    "q": "To determine genotype from a pedigree, you should mainly focus on…",
+    "a": [
+      "Disease type + affected status + offspring status",
+      "Only shape shading",
+      "Only sex of individuals",
+      "Only the last generation"
+    ],
+    "correct": 0,
+    "explanation": "Focus on disease type, whether the individual has it, and whether offspring have it."
+  },
+  {
+    "topic": "Epistasis",
+    "q": "Epistasis is when…",
+    "a": [
+      "One gene masks or modifies another gene.",
+      "Two alleles are expressed equally.",
+      "Genes assort independently.",
+      "Chromosomes fail to separate."
+    ],
+    "correct": 0,
+    "explanation": "One gene masks/modifies another gene."
+  },
+  {
+    "topic": "Epistasis",
+    "q": "Which ratio is associated with recessive epistasis?",
+    "a": [
+      "9:3:4",
+      "9:3:3:1",
+      "12:3:1",
+      "15:1"
+    ],
+    "correct": 0,
+    "explanation": "Recessive genotype at one locus suppresses another gene at different locus; ratio 9:3:4 (ex: Labrador pigmentation)."
+  },
+  {
+    "topic": "Epistasis",
+    "q": "Dominant epistasis typically produces which ratio?",
+    "a": [
+      "12:3:1",
+      "9:3:4",
+      "9:7",
+      "13:3"
+    ],
+    "correct": 0,
+    "explanation": "Dominant genotype suppresses another locus (AA disables B; aa allows B); ratio 12:3:1."
+  },
+  {
+    "topic": "Epistasis",
+    "q": "Complementary gene action (duplicate recessive epistasis) gives which ratio?",
+    "a": [
+      "9:7",
+      "15:1",
+      "12:3:1",
+      "9:3:4"
+    ],
+    "correct": 0,
+    "explanation": "Complementary gene action: need at least one dominant allele at BOTH loci (A_B_). Ratio 9:7."
+  },
+  {
+    "topic": "Epistasis",
+    "q": "Duplicate dominant epistasis results in which ratio?",
+    "a": [
+      "15:1",
+      "9:7",
+      "13:3",
+      "9:3:4"
+    ],
+    "correct": 0,
+    "explanation": "Redundancy: dominant at either locus gives same phenotype; only aabb differs. Ratio 15:1."
+  },
+  {
+    "topic": "Epistasis",
+    "q": "Dominant inhibitory epistasis produces which ratio?",
+    "a": [
+      "13:3",
+      "12:3:1",
+      "9:7",
+      "15:1"
+    ],
+    "correct": 0,
+    "explanation": "Dominant allele inhibits expression of dominant allele at another locus (only if second allele is dominant). Ratio 13:3."
+  },
+  {
+    "topic": "Epistasis",
+    "q": "If you count 2 phenotypes, it may be…",
+    "a": [
+      "Duplicate or inhibitory epistasis",
+      "Only recessive epistasis",
+      "Only codominance",
+      "Only incomplete dominance"
+    ],
+    "correct": 0,
+    "explanation": "2 phenotypes: duplicate or inhibitory. 3 phenotypes: dominant or recessive epistasis."
+  },
+  {
+    "topic": "Epistasis",
+    "q": "Given raw phenotype counts, what’s the suggested first step?",
+    "a": [
+      "Add them up to get a total.",
+      "Immediately pick 9:3:3:1.",
+      "Square p and q.",
+      "Assume sex-linkage."
+    ],
+    "correct": 0,
+    "explanation": "Add totals, divide by 16 to get a unit, then divide each phenotype by the unit."
+  },
+  {
+    "topic": "Epistasis",
+    "q": "240 white, 60 yellow, 20 green → what ratio and epistasis type?",
+    "a": [
+      "12:3:1 and dominant epistasis",
+      "9:3:4 and recessive epistasis",
+      "15:1 and duplicate dominant",
+      "9:7 and complementary"
+    ],
+    "correct": 0,
+    "explanation": "Total 320; unit 320/16=20; 240/20=12, 60/20=3, 20/20=1 → 12:3:1 dominant epistasis."
+  },
+  {
+    "topic": "Mitosis",
+    "q": "Mitosis produces…",
+    "a": [
+      "Two identical daughter cells",
+      "Four haploid cells",
+      "Two haploid cells",
+      "Cells with aneuploidy by default"
+    ],
+    "correct": 0,
+    "explanation": "Cell divides to produce two identical daughter cells."
+  },
+  {
+    "topic": "Mitosis",
+    "q": "During G1, the cell mainly…",
+    "a": [
+      "Grows and duplicates organelles",
+      "Separates sister chromatids",
+      "Pairs homologous chromosomes",
+      "Builds cell plate"
+    ],
+    "correct": 0,
+    "explanation": "Cell grows and duplicates organelles; G1/S checkpoint decides commitment to division."
+  },
+  {
+    "topic": "Mitosis",
+    "q": "What happens at the G1/S checkpoint?",
+    "a": [
+      "Cell decides whether to commit to division",
+      "DNA is replicated",
+      "Homologs separate",
+      "Spindle breaks down"
+    ],
+    "correct": 0,
+    "explanation": "Cell decides whether to commit to division."
+  },
+  {
+    "topic": "Mitosis",
+    "q": "In S phase, what key event occurs?",
+    "a": [
+      "DNA replicates; sister chromatids form",
+      "Chromosomes align at metaphase plate",
+      "Cytoplasm splits",
+      "Crossing over occurs"
+    ],
+    "correct": 0,
+    "explanation": "DNA replicates; each chromosome becomes two sister chromatids joined at centromere."
+  },
+  {
+    "topic": "Mitosis",
+    "q": "G2 phase is mainly…",
+    "a": [
+      "Final preparation incl. centrosome replication and ATP production",
+      "Where homologs pair",
+      "Where ribosomes translate mRNA",
+      "Where chromosomes condense into chromatin after division"
+    ],
+    "correct": 0,
+    "explanation": "Final prep incl. centrosome replication and ATP production; G2/M checkpoint ensures DNA not damaged before mitosis."
+  },
+  {
+    "topic": "Mitosis",
+    "q": "G2/M checkpoint ensures…",
+    "a": [
+      "DNA is not damaged before mitosis",
+      "Genes assort independently",
+      "Telomerase extends all chromosomes each cycle",
+      "Codons match anticodons"
+    ],
+    "correct": 0,
+    "explanation": "Ensures DNA is not damaged before entering mitotic phase."
+  },
+  {
+    "topic": "Mitosis",
+    "q": "In mitotic prophase, a key event is…",
+    "a": [
+      "Spindle fibers attach after centromeres migrate to opposite poles",
+      "Homologous chromosomes separate",
+      "Chromosomes align at equator in meiosis II",
+      "RNA polymerase binds promoter"
+    ],
+    "correct": 0,
+    "explanation": "Spindle fibers attach to chromosomes after centromeres migrate to opposite poles."
+  },
+  {
+    "topic": "Mitosis",
+    "q": "What happens in metaphase?",
+    "a": [
+      "Chromosomes align at metaphase plane",
+      "Sister chromatids separate",
+      "Two nuclei form",
+      "Cytoplasm divides"
+    ],
+    "correct": 0,
+    "explanation": "Chromosomes align at metaphase plane; spindle assembly checkpoint verifies kinetore attachment."
+  },
+  {
+    "topic": "Mitosis",
+    "q": "Spindle assembly checkpoint checks…",
+    "a": [
+      "All kinetochores are properly attached",
+      "Telomere length",
+      "Whether lactose is present",
+      "Whether mutation is missense"
+    ],
+    "correct": 0,
+    "explanation": "Ensures all kinetochores are properly attached."
+  },
+  {
+    "topic": "Mitosis",
+    "q": "In anaphase, what separates?",
+    "a": [
+      "Sister chromatids",
+      "Homologous chromosomes only",
+      "RNA strands",
+      "Centrioles into vesicles"
+    ],
+    "correct": 0,
+    "explanation": "Sister chromatids separate and move to opposite poles."
+  },
+  {
+    "topic": "Mitosis",
+    "q": "Telophase features…",
+    "a": [
+      "Two nuclei form; chromosomes condense into chromatin",
+      "Crossing over",
+      "Homologous pairing",
+      "Primer placement"
+    ],
+    "correct": 0,
+    "explanation": "Two distinct nuclei form as chromosomes condense into chromatin; cytokinesis follows."
+  },
+  {
+    "topic": "Mitosis",
+    "q": "Animal cell cytokinesis uses…",
+    "a": [
+      "Cleavage furrow (actin+myosin ring)",
+      "Cell plate from vesicles",
+      "Telomerase",
+      "ddNTP termination"
+    ],
+    "correct": 0,
+    "explanation": "Cleavage furrow: actin + myosin ring pinches membrane inward."
+  },
+  {
+    "topic": "Mitosis",
+    "q": "Plant cell cytokinesis forms…",
+    "a": [
+      "Cell plate from vesicles (new cell wall)",
+      "Cleavage furrow",
+      "Spindle checkpoint",
+      "Okazaki fragments"
+    ],
+    "correct": 0,
+    "explanation": "Cell plate built from vesicles creates new cell wall."
+  },
+  {
+    "topic": "Meiosis",
+    "q": "Meiosis creates…",
+    "a": [
+      "Gametes with half the genetic material",
+      "Two identical diploid cells",
+      "Aneuploid cells always",
+      "Only somatic cells"
+    ],
+    "correct": 0,
+    "explanation": "Creates gametes with half the genetic material."
+  },
+  {
+    "topic": "Meiosis I",
+    "q": "A defining feature of prophase I is…",
+    "a": [
+      "Homolog pairing + crossing over",
+      "Sister chromatids separating",
+      "Chromosomes lining up single-file for mitosis",
+      "RNA polymerase binding terminator"
+    ],
+    "correct": 0,
+    "explanation": "Chromosomes condense; homologs pair; crossing over occurs; centromeres move to opposite poles."
+  },
+  {
+    "topic": "Meiosis I",
+    "q": "In metaphase I, the spindle aligns…",
+    "a": [
+      "Homologous chromosome pairs",
+      "Sister chromatids only",
+      "Ribosomes on mRNA",
+      "Okazaki fragments"
+    ],
+    "correct": 0,
+    "explanation": "Spindle aligns homologous pairs in middle of cell."
+  },
+  {
+    "topic": "Meiosis I",
+    "q": "In anaphase I, what separates?",
+    "a": [
+      "Homologous chromosomes (sister chromatids stay attached)",
+      "Sister chromatids",
+      "mRNA and tRNA",
+      "DNA strands by helicase"
+    ],
+    "correct": 0,
+    "explanation": "Homologs separate; sister chromatids remain attached."
+  },
+  {
+    "topic": "Meiosis I",
+    "q": "Telophase I ends with…",
+    "a": [
+      "2 haploid daughter cells after cytokinesis",
+      "4 haploid daughter cells",
+      "2 identical diploid cells",
+      "No nuclear envelope forming"
+    ],
+    "correct": 0,
+    "explanation": "Spindle breaks down; new nuclear envelope forms; cytokinesis produces 2 haploid daughter cells."
+  },
+  {
+    "topic": "Meiosis II",
+    "q": "Meiosis II primarily…",
+    "a": [
+      "Separates sister chromatids",
+      "Separates homologs",
+      "Does crossing over",
+      "Creates diploid cells"
+    ],
+    "correct": 0,
+    "explanation": "Separates sister chromatids."
+  },
+  {
+    "topic": "Meiosis II",
+    "q": "In prophase II…",
+    "a": [
+      "Sister chromatids attach to spindle",
+      "Homologs pair",
+      "DNA replicates",
+      "Cell plate forms"
+    ],
+    "correct": 0,
+    "explanation": "Sister chromatids attach to meiotic spindle."
+  },
+  {
+    "topic": "Meiosis II",
+    "q": "Metaphase II includes…",
+    "a": [
+      "Chromosomes at equator + kinetochore attachment",
+      "Homologs lining up as pairs",
+      "Crossing over",
+      "RNA primer removal"
+    ],
+    "correct": 0,
+    "explanation": "Chromosomes line up at equator; kinetochores attach to microtubules."
+  },
+  {
+    "topic": "Meiosis II",
+    "q": "In anaphase II…",
+    "a": [
+      "Sister chromatids separate",
+      "Homologs separate",
+      "DNA polymerase stops at telomeres",
+      "Repressor binds operator"
+    ],
+    "correct": 0,
+    "explanation": "Sister chromatids separate."
+  },
+  {
+    "topic": "Meiosis II",
+    "q": "End of meiosis II produces…",
+    "a": [
+      "4 haploid daughter cells with unique genetic material",
+      "2 identical daughter cells",
+      "2 haploid cells only",
+      "4 diploid identical cells"
+    ],
+    "correct": 0,
+    "explanation": "Spindle breaks down; new nuclear envelope develops; cytokinesis splits cytoplasm; produces 4 unique haploid cells."
+  },
+  {
+    "topic": "Meiosis",
+    "q": "Oogenesis produces…",
+    "a": [
+      "1 egg and 4 polar bodies",
+      "4 sperm cells",
+      "2 identical eggs",
+      "Only polar bodies"
+    ],
+    "correct": 0,
+    "explanation": "Produces 1 egg and 4 polar bodies."
+  },
+  {
+    "topic": "Meiosis",
+    "q": "Spermatogenesis produces…",
+    "a": [
+      "4 sperm cells",
+      "1 egg and 4 polar bodies",
+      "2 sperm cells",
+      "4 eggs"
+    ],
+    "correct": 0,
+    "explanation": "Produces 4 sperm cells."
+  },
+  {
+    "topic": "Mitosis vs Meiosis",
+    "q": "Which is true of BOTH mitosis and meiosis?",
+    "a": [
+      "Both use microtubule spindle and begin after DNA replication/interphase",
+      "Both always make 4 haploid cells",
+      "Both have crossing over",
+      "Both skip interphase"
+    ],
+    "correct": 0,
+    "explanation": "Both use spindle apparatus with microtubules; both begin with DNA replication and interphase."
+  },
+  {
+    "topic": "Chromosome Errors",
+    "q": "Nondisjunction is…",
+    "a": [
+      "Failure of homologs/sister chromatids to separate properly",
+      "Equal expression of both alleles",
+      "DNA repair by nuclease",
+      "Independent assortment"
+    ],
+    "correct": 0,
+    "explanation": "Failure of homologs or sister chromatids to separate properly; can occur in meiosis or mitosis; causes aneuploidy."
+  },
+  {
+    "topic": "Chromosome Errors",
+    "q": "Nondisjunction results in daughter cells with…",
+    "a": [
+      "Aneuploidy (abnormal chromosome numbers)",
+      "Always perfect diploidy",
+      "Only point mutations",
+      "Only inversions"
+    ],
+    "correct": 0,
+    "explanation": "Abnormal chromosome numbers in daughter cells caused by nondisjunction."
+  },
+  {
+    "topic": "Chromosome Errors",
+    "q": "How can nondisjunction be diagnosed?",
+    "a": [
+      "Using karyotypes to view numbered chromosome pairs",
+      "By checking lac operon",
+      "By PCR primer annealing temperature only",
+      "By telomerase activity"
+    ],
+    "correct": 0,
+    "explanation": "Karyotypes diagnose nondisjunction by viewing chromosomes in numbered pairs and finding affected pair."
+  },
+  {
+    "topic": "Population Genetics",
+    "q": "Hardy-Weinberg equilibrium depends on how many conditions?",
+    "a": [
+      "5",
+      "3",
+      "4",
+      "2"
+    ],
+    "correct": 0,
+    "explanation": "5 conditions: no migration, no mutations, random mating, no natural selection, large population."
+  },
+  {
+    "topic": "Population Genetics",
+    "q": "Why does Hardy-Weinberg assume no migration?",
+    "a": [
+      "Migration can introduce new alleles into the population",
+      "Migration prevents random mating",
+      "Migration increases telomere length",
+      "Migration forces codominance"
+    ],
+    "correct": 0,
+    "explanation": "Migration can introduce new alleles into the population."
+  },
+  {
+    "topic": "Population Genetics",
+    "q": "Why assume no mutations?",
+    "a": [
+      "Mutations can introduce new alleles",
+      "Mutations stop meiosis",
+      "Mutations guarantee dominance",
+      "Mutations remove chromosomes"
+    ],
+    "correct": 0,
+    "explanation": "Mutations can introduce new alleles."
+  },
+  {
+    "topic": "Population Genetics",
+    "q": "Hardy-Weinberg assumes random mating because…",
+    "a": [
+      "Sexual selection can make some genotypes more fit",
+      "It prevents DNA replication",
+      "It prevents crossing over",
+      "It stops transcription"
+    ],
+    "correct": 0,
+    "explanation": "Sexual selection violates random mating; certain genotypes may be more fit."
+  },
+  {
+    "topic": "Population Genetics",
+    "q": "If natural selection happens, what changes?",
+    "a": [
+      "Alleles with higher survival increase in frequency",
+      "p+q stops equaling 1 by definition",
+      "Chromosomes stop pairing",
+      "RNA polymerase stops working"
+    ],
+    "correct": 0,
+    "explanation": "Alleles with higher survival ability increase in frequency if selection occurs."
+  },
+  {
+    "topic": "Population Genetics",
+    "q": "Why must the population be large?",
+    "a": [
+      "Small populations are subject to genetic drift",
+      "Large populations force linked genes",
+      "Large populations stop mutations",
+      "Large populations prevent meiosis"
+    ],
+    "correct": 0,
+    "explanation": "Small populations are subject to genetic drift."
+  },
+  {
+    "topic": "Population Genetics",
+    "q": "In Hardy-Weinberg, p and q represent…",
+    "a": [
+      "Allele frequencies where p+q=1",
+      "Genotype counts only",
+      "Mutation rates",
+      "Chromosome numbers"
+    ],
+    "correct": 0,
+    "explanation": "p=dominant allele frequency, q=recessive allele frequency."
+  },
+  {
+    "topic": "Population Genetics",
+    "q": "In p²+2pq+q²=1, what does 2pq represent?",
+    "a": [
+      "Heterozygous individuals",
+      "Homozygous recessive",
+      "Homozygous dominant",
+      "Only carriers in pedigrees"
+    ],
+    "correct": 0,
+    "explanation": "p² = homozygous dominant, 2pq = heterozygous, q² = homozygous recessive."
+  },
+  {
+    "topic": "Population Genetics",
+    "q": "How do you get genotype counts from Hardy-Weinberg proportions?",
+    "a": [
+      "Multiply the proportion by total population",
+      "Divide total by 16",
+      "Use FOIL",
+      "Use gel electrophoresis"
+    ],
+    "correct": 0,
+    "explanation": "Multiply proportions by total population to get numbers of each genotype."
+  },
+  {
+    "topic": "Population Genetics",
+    "q": "Bottleneck effect is…",
+    "a": [
+      "Population shrinks due to random event; allele frequencies change",
+      "Small group colonizes new land",
+      "Individuals move increasing variation in new area",
+      "Two alleles expressed equally"
+    ],
+    "correct": 0,
+    "explanation": "Random event shrinks population; allele frequencies decrease due to much smaller population sample."
+  },
+  {
+    "topic": "Population Genetics",
+    "q": "Founder effect describes…",
+    "a": [
+      "Colonization by small group; offspring have migrants’ allele mix",
+      "Random disaster shrinking population",
+      "Dominant gene suppressing another",
+      "Repairing thymine dimers"
+    ],
+    "correct": 0,
+    "explanation": "Small group settles new land; offspring reflect migrants’ alleles, not original population."
+  },
+  {
+    "topic": "Population Genetics",
+    "q": "Genetic drift (as described here) refers to…",
+    "a": [
+      "Individuals moving, increasing allele variation in the new area",
+      "Selection for the fittest always",
+      "DNA polymerase proofreading",
+      "Telomerase extending telomeres"
+    ],
+    "correct": 0,
+    "explanation": "Individuals move from one place to another, increasing allele variation in new area."
+  },
+  {
+    "topic": "Population Genetics",
+    "q": "Relative fitness means…",
+    "a": [
+      "Desirable-trait alleles tend to increase in frequency",
+      "Alleles always stay constant",
+      "Only recessive alleles survive",
+      "Fitness equals chromosome number"
+    ],
+    "correct": 0,
+    "explanation": "Alleles for desirable traits are more likely to increase in frequency."
+  },
+  {
+    "topic": "Evolution",
+    "q": "Which is listed as a gene duplication mechanism?",
+    "a": [
+      "Unequal crossing over / retroposition / polyploidy",
+      "Only PCR",
+      "Only lac operon repression",
+      "Only mismatch repair"
+    ],
+    "correct": 0,
+    "explanation": "Unequal crossing over, retroposition (mRNA → DNA), polyploidy (entire chromosome duplicates)."
+  },
+  {
+    "topic": "Evolution",
+    "q": "Which is NOT one of the listed duplicated gene outcomes?",
+    "a": [
+      "Always becomes dominant epistasis",
+      "Nonfunctional (pseudogene)",
+      "Neofunctional",
+      "Subfunctional"
+    ],
+    "correct": 0,
+    "explanation": "Duplicates are lost or become: nonfunctional (pseudogene), neofunctional (new beneficial function), subfunctional (split original tasks)."
+  },
+  {
+    "topic": "Evolution",
+    "q": "Nonfunctional duplicate means…",
+    "a": [
+      "One copy becomes a pseudogene",
+      "Both copies gain brand new function",
+      "Both copies share original tasks",
+      "It always increases fitness"
+    ],
+    "correct": 0,
+    "explanation": "One copy mutates and becomes a non-functional pseudogene."
+  },
+  {
+    "topic": "Evolution",
+    "q": "Neofunctionalization means…",
+    "a": [
+      "Second copy gains new beneficial function",
+      "Both copies become pseudogenes",
+      "Trait disappears unless A_B_",
+      "Dominant allele inhibits another"
+    ],
+    "correct": 0,
+    "explanation": "One copy keeps original function; second gains entirely new beneficial function."
+  },
+  {
+    "topic": "Evolution",
+    "q": "Subfunctionalization means…",
+    "a": [
+      "Both copies split the original gene’s tasks",
+      "One copy becomes nonfunctional",
+      "One copy gains totally new function",
+      "No copies remain"
+    ],
+    "correct": 0,
+    "explanation": "Both copies share tasks of original gene."
+  },
+  {
+    "topic": "Evolution",
+    "q": "Why does gene duplication promote evolution?",
+    "a": [
+      "Creates new genes/functions and diversifies gene pool",
+      "Prevents mutations entirely",
+      "Stops natural selection",
+      "Forces independent assortment"
+    ],
+    "correct": 0,
+    "explanation": "Allows new genes to emerge and diversifies gene pool."
+  },
+  {
+    "topic": "Evolution",
+    "q": "Homologs are…",
+    "a": [
+      "Genes related by common ancestry",
+      "Genes on sex chromosomes only",
+      "Identical alleles in same individual",
+      "Only mitochondrial genes"
+    ],
+    "correct": 0,
+    "explanation": "Genes related by common ancestry."
+  },
+  {
+    "topic": "Evolution",
+    "q": "Orthologs are…",
+    "a": [
+      "Genes in different species, same function, common ancestor",
+      "Genes duplicated within same species",
+      "Random alleles after drift",
+      "Only pseudogenes"
+    ],
+    "correct": 0,
+    "explanation": "Genes in different species evolved from common ancestor with same function."
+  },
+  {
+    "topic": "Evolution",
+    "q": "Paralogs are…",
+    "a": [
+      "Genes from duplication that diverge in function",
+      "Genes from speciation with same function",
+      "Only nonfunctional genes",
+      "Only regulatory DNA"
+    ],
+    "correct": 0,
+    "explanation": "Genes within same or different species from duplication that diverge in function."
+  },
+  {
+    "topic": "Evolution",
+    "q": "To decide ortholog vs paralog, you check whether it came from…",
+    "a": [
+      "Speciation vs duplication",
+      "Only recombination rate",
+      "Only phenotype ratios",
+      "Only spindle checkpoint"
+    ],
+    "correct": 0,
+    "explanation": "A gene can be paralog and ortholog or just one; check speciation vs duplication."
+  },
+  {
+    "topic": "Phylogenetics",
+    "q": "In a phylogenetic tree, branches represent…",
+    "a": [
+      "Different species",
+      "The same species only",
+      "Only genes",
+      "Only chromosomes"
+    ],
+    "correct": 0,
+    "explanation": "Branches indicate different species."
+  },
+  {
+    "topic": "Phylogenetics",
+    "q": "In a phylogenetic tree, nodes indicate…",
+    "a": [
+      "Common ancestor",
+      "Mutation rate",
+      "Protein folding",
+      "Gamete types"
+    ],
+    "correct": 0,
+    "explanation": "Nodes indicate common ancestor."
+  },
+  {
+    "topic": "Phylogenetics",
+    "q": "Branches close together imply…",
+    "a": [
+      "More recent common ancestor",
+      "Less related species",
+      "Different domains always",
+      "No shared ancestry"
+    ],
+    "correct": 0,
+    "explanation": "Close proximity branches share a more recent common ancestor."
+  },
+  {
+    "topic": "Phylogenetics",
+    "q": "When building trees using genetic data, you group species by…",
+    "a": [
+      "More similarities than differences",
+      "Only appearance",
+      "Only habitat",
+      "Only chromosome count"
+    ],
+    "correct": 0,
+    "explanation": "Place more similar species closer together (more similarities than differences)."
+  },
+  {
+    "topic": "DNA Structure",
+    "q": "DNA is made of…",
+    "a": [
+      "Sugar + phosphate + base (A,T,G,C)",
+      "Amino acids only",
+      "RNA nucleotides only",
+      "Lipids + proteins"
+    ],
+    "correct": 0,
+    "explanation": "DNA contains deoxyribose sugar, phosphate (PO4^3-), and nitrogenous base (A,T,G,C)."
+  },
+  {
+    "topic": "DNA Structure",
+    "q": "DNA’s backbone is made of…",
+    "a": [
+      "Sugar and phosphate",
+      "Bases only",
+      "Purines only",
+      "Amino acids"
+    ],
+    "correct": 0,
+    "explanation": "Sugar and phosphate form the backbone."
+  },
+  {
+    "topic": "DNA Structure",
+    "q": "Antiparallel DNA strands run…",
+    "a": [
+      "One 5'→3' and the other 3'→5'",
+      "Both 5'→3'",
+      "Both 3'→5'",
+      "Random directions each gene"
+    ],
+    "correct": 0,
+    "explanation": "One strand 5'→3', the other 3'→5'."
+  },
+  {
+    "topic": "DNA Structure",
+    "q": "A binds T with…",
+    "a": [
+      "2 hydrogen bonds",
+      "3 hydrogen bonds",
+      "4 hydrogen bonds",
+      "1 hydrogen bond"
+    ],
+    "correct": 0,
+    "explanation": "Adenine binds thymine with 2 hydrogen bonds."
+  },
+  {
+    "topic": "DNA Structure",
+    "q": "G binds C with…",
+    "a": [
+      "3 hydrogen bonds",
+      "2 hydrogen bonds",
+      "1 hydrogen bond",
+      "4 hydrogen bonds"
+    ],
+    "correct": 0,
+    "explanation": "Guanine binds cytosine with 3 hydrogen bonds (stronger/more stable)."
+  },
+  {
+    "topic": "DNA Structure",
+    "q": "Which are purines?",
+    "a": [
+      "A and G",
+      "C and T",
+      "A and T",
+      "G and C only"
+    ],
+    "correct": 0,
+    "explanation": "Purines: A and G; double-ringed."
+  },
+  {
+    "topic": "DNA Structure",
+    "q": "Which are pyrimidines?",
+    "a": [
+      "C and T",
+      "A and G",
+      "A and C",
+      "G and T"
+    ],
+    "correct": 0,
+    "explanation": "Pyrimidines: C and T; single-ringed."
+  },
+  {
+    "topic": "DNA Replication",
+    "q": "DNA replication is…",
+    "a": [
+      "Semiconservative",
+      "Fully conservative",
+      "Fully dispersive only",
+      "Only in cytoplasm of eukaryotes"
+    ],
+    "correct": 0,
+    "explanation": "DNA replication is semiconservative."
+  },
+  {
+    "topic": "DNA Replication",
+    "q": "Helicase does what?",
+    "a": [
+      "Unwinds the double helix",
+      "Adds primers",
+      "Seals nicks",
+      "Prevents supercoiling"
+    ],
+    "correct": 0,
+    "explanation": "Unwinds the double helix."
+  },
+  {
+    "topic": "DNA Replication",
+    "q": "Topoisomerase prevents…",
+    "a": [
+      "Supercoiling",
+      "Primer formation",
+      "Chain termination",
+      "Transcription initiation"
+    ],
+    "correct": 0,
+    "explanation": "Prevents supercoiling."
+  },
+  {
+    "topic": "DNA Replication",
+    "q": "Primase is responsible for…",
+    "a": [
+      "Adding RNA primers",
+      "Proofreading bases",
+      "Sealing Okazaki fragments",
+      "Unwinding DNA"
+    ],
+    "correct": 0,
+    "explanation": "Adds RNA primers on both strands for DNA polymerase."
+  },
+  {
+    "topic": "DNA Replication",
+    "q": "DNA polymerase synthesizes DNA in which direction?",
+    "a": [
+      "5'→3'",
+      "3'→5'",
+      "Either direction equally",
+      "Only 5'→5'"
+    ],
+    "correct": 0,
+    "explanation": "Works 5'→3' (leading strand)."
+  },
+  {
+    "topic": "DNA Replication",
+    "q": "Okazaki fragments occur on the…",
+    "a": [
+      "Lagging strand",
+      "Leading strand",
+      "mRNA strand",
+      "Protein strand"
+    ],
+    "correct": 0,
+    "explanation": "DNA pieces on lagging strand (template runs 3'→5')."
+  },
+  {
+    "topic": "DNA Replication",
+    "q": "DNA ligase…",
+    "a": [
+      "Seals/joins DNA fragments",
+      "Unwinds DNA",
+      "Adds primers",
+      "Stops replication at telomeres"
+    ],
+    "correct": 0,
+    "explanation": "Holds fragments together (seals)."
+  },
+  {
+    "topic": "DNA Replication",
+    "q": "Why does the lagging strand loop?",
+    "a": [
+      "So both DNA polymerases move same direction as helicase",
+      "To create thymine dimers",
+      "To stop mismatch repair",
+      "To inhibit transcription"
+    ],
+    "correct": 0,
+    "explanation": "Lagging strand loops so both polymerases move same direction as helicase."
+  },
+  {
+    "topic": "DNA Replication",
+    "q": "Single-strand binding (SSB) proteins help by…",
+    "a": [
+      "Preventing hairpin loops that stall polymerase",
+      "Cutting out damaged DNA",
+      "Making ddNTPs",
+      "Binding operators in lac operon"
+    ],
+    "correct": 0,
+    "explanation": "Stop strands from forming hairpin loops that stall polymerase."
+  },
+  {
+    "topic": "DNA Replication",
+    "q": "Eukaryotic DNA replication termination occurs at…",
+    "a": [
+      "Telomeres",
+      "Centromeres only",
+      "Operators",
+      "Enhancers"
+    ],
+    "correct": 0,
+    "explanation": "Occurs at telomeres."
+  },
+  {
+    "topic": "DNA Replication",
+    "q": "Why do chromosomes shorten each division without telomerase?",
+    "a": [
+      "No room for primer at end of lagging strand",
+      "Helicase is too slow",
+      "Okazaki fragments disappear",
+      "RNA polymerase stops early"
+    ],
+    "correct": 0,
+    "explanation": "No room for primer at end of lagging strand → chromosomes shorten unless telomerase extends."
+  },
+  {
+    "topic": "DNA Replication",
+    "q": "Why does DNA polymerase often choose correct base?",
+    "a": [
+      "Active site favors correct geometry",
+      "Because ligase checks each base",
+      "Because SSB proteins proofread",
+      "Because ddNTPs force it"
+    ],
+    "correct": 0,
+    "explanation": "Active site favors correct base-pair geometry; wrong base won’t fit well."
+  },
+  {
+    "topic": "DNA Replication",
+    "q": "How is a wrong base corrected during replication (as described)?",
+    "a": [
+      "Bulge triggers backtrack + exonuclease removal",
+      "Nuclease excision repair only",
+      "Transcription factors fix it",
+      "Ribosome edits it"
+    ],
+    "correct": 0,
+    "explanation": "Wrong base causes bulge → polymerase backtracks and snips it out (exonuclease)."
+  },
+  {
+    "topic": "DNA / Chromosomes",
+    "q": "Plasmids are…",
+    "a": [
+      "Small circular DNA in prokaryotes",
+      "Linear chromosomes in humans",
+      "RNA primers",
+      "Protein pores"
+    ],
+    "correct": 0,
+    "explanation": "Small circular DNA in prokaryotes."
+  },
+  {
+    "topic": "DNA / Chromosomes",
+    "q": "Chromatin is…",
+    "a": [
+      "DNA plus histone proteins",
+      "Only DNA bases",
+      "Only RNA",
+      "Only spindle fibers"
+    ],
+    "correct": 0,
+    "explanation": "DNA + histone proteins."
+  },
+  {
+    "topic": "DNA / Chromosomes",
+    "q": "Euchromatin is associated with…",
+    "a": [
+      "Loosely packed DNA, transcription active",
+      "Condensed DNA, silent genes",
+      "Only mitochondrial genes",
+      "Only telomeres"
+    ],
+    "correct": 0,
+    "explanation": "Loosely bound histones → transcription allowed."
+  },
+  {
+    "topic": "DNA / Chromosomes",
+    "q": "Heterochromatin tends to be…",
+    "a": [
+      "Condensed and transcriptionally silent",
+      "Loose and active",
+      "Only RNA",
+      "Only plasmid DNA"
+    ],
+    "correct": 0,
+    "explanation": "Condensed histones → silent genes."
+  },
+  {
+    "topic": "DNA / Chromosomes",
+    "q": "Chromosomes are…",
+    "a": [
+      "Tightly condensed DNA ready for duplication",
+      "RNA molecules for translation",
+      "DNA damage types",
+      "Operons"
+    ],
+    "correct": 0,
+    "explanation": "Tightly condensed genes ready for duplication in mitosis/meiosis."
+  },
+  {
+    "topic": "DNA Damage & Repair",
+    "q": "DNA can be damaged by…",
+    "a": [
+      "UV light, mutagens, or breakdown",
+      "Only transcription",
+      "Only translation",
+      "Only ligase"
+    ],
+    "correct": 0,
+    "explanation": "UV light, mutagens, or breakdown."
+  },
+  {
+    "topic": "DNA Damage & Repair",
+    "q": "Thymine dimers form when…",
+    "a": [
+      "Adjacent thymines bond after UV exposure",
+      "G bonds to C with 2 bonds",
+      "Telomerase extends telomeres",
+      "RNA primers are removed"
+    ],
+    "correct": 0,
+    "explanation": "Adjacent thymines bond after UV exposure."
+  },
+  {
+    "topic": "DNA Damage & Repair",
+    "q": "Depurination is…",
+    "a": [
+      "Loss of A or G base from backbone",
+      "Insertion of extra nucleotides",
+      "Swap of pyrimidine for pyrimidine",
+      "DNA flipped 180°"
+    ],
+    "correct": 0,
+    "explanation": "Loss of A or G from backbone."
+  },
+  {
+    "topic": "DNA Damage & Repair",
+    "q": "Mismatch repair works by…",
+    "a": [
+      "Scanning new strand for bulges and replacing",
+      "Cutting out thymine dimers only",
+      "Using ribosome proofreading",
+      "Adding ddNTPs"
+    ],
+    "correct": 0,
+    "explanation": "Enzymes scan new DNA strand for bulges and replace mismatches."
+  },
+  {
+    "topic": "DNA Damage & Repair",
+    "q": "Nucleotide excision repair includes…",
+    "a": [
+      "Nuclease cut → polymerase fill → ligase seal",
+      "Helicase unwind → primase primer → ligase seal only",
+      "Ribosome editing → tRNA swap",
+      "Promoter binding only"
+    ],
+    "correct": 0,
+    "explanation": "Nuclease cuts damaged part; DNA polymerase fills gap; ligase seals."
+  },
+  {
+    "topic": "Mutations",
+    "q": "A DNA mutation is…",
+    "a": [
+      "Permanent alteration in nucleotide sequence",
+      "Temporary mRNA change only",
+      "Always a chromosomal duplication",
+      "Only a phenotype ratio"
+    ],
+    "correct": 0,
+    "explanation": "Permanent alteration in nucleotide sequence."
+  },
+  {
+    "topic": "Mutations",
+    "q": "A substitution is…",
+    "a": [
+      "One nucleotide swapped for another",
+      "Addition of nucleotides",
+      "Removal of nucleotides",
+      "Flip of chromosome segment"
+    ],
+    "correct": 0,
+    "explanation": "One nucleotide swapped for another."
+  },
+  {
+    "topic": "Mutations",
+    "q": "A transition is…",
+    "a": [
+      "Purine↔purine or pyrimidine↔pyrimidine",
+      "Purine↔pyrimidine",
+      "Deletion of base",
+      "Chromosome translocation"
+    ],
+    "correct": 0,
+    "explanation": "Purine→purine or pyrimidine→pyrimidine."
+  },
+  {
+    "topic": "Mutations",
+    "q": "A transversion is…",
+    "a": [
+      "Purine replaced by pyrimidine (or vice versa)",
+      "Purine replaced by purine",
+      "Pyrimidine replaced by pyrimidine",
+      "Loss of A or G"
+    ],
+    "correct": 0,
+    "explanation": "Purine↔pyrimidine."
+  },
+  {
+    "topic": "Mutations",
+    "q": "An insertion is…",
+    "a": [
+      "Addition of extra nucleotides",
+      "Removal of nucleotides",
+      "Swapping one nucleotide",
+      "Duplicating an entire chromosome"
+    ],
+    "correct": 0,
+    "explanation": "Addition of extra nucleotides."
+  },
+  {
+    "topic": "Mutations",
+    "q": "A deletion is…",
+    "a": [
+      "Removal of nucleotides",
+      "Addition of nucleotides",
+      "Only purine swap",
+      "Only chromosomal inversion"
+    ],
+    "correct": 0,
+    "explanation": "Removal of nucleotides from sequence."
+  },
+  {
+    "topic": "Chromosomal Rearrangements",
+    "q": "A translocation is…",
+    "a": [
+      "Segment attaches to a different non-homologous chromosome",
+      "Segment flips within same chromosome",
+      "A base substitution",
+      "A frameshift from insertion"
+    ],
+    "correct": 0,
+    "explanation": "Segment breaks off and attaches to different non-homologous chromosome."
+  },
+  {
+    "topic": "Chromosomal Rearrangements",
+    "q": "An inversion is…",
+    "a": [
+      "DNA segment flips 180° within same chromosome",
+      "Segment moves to different chromosome",
+      "A small plasmid",
+      "A thymine dimer"
+    ],
+    "correct": 0,
+    "explanation": "Segment flips 180° within same chromosome."
+  },
+  {
+    "topic": "Chromosomal Rearrangements",
+    "q": "Chromosomal duplication is…",
+    "a": [
+      "Section copied and repeated",
+      "Section deleted",
+      "Section flipped",
+      "Section repaired by nuclease"
+    ],
+    "correct": 0,
+    "explanation": "A section of DNA is copied and repeated."
+  },
+  {
+    "topic": "Protein Effects",
+    "q": "Silent mutation means…",
+    "a": [
+      "Codon changes but same amino acid",
+      "Different amino acid inserted",
+      "Early stop codon",
+      "Reading frame shifts"
+    ],
+    "correct": 0,
+    "explanation": "Codon changes but same amino acid."
+  },
+  {
+    "topic": "Protein Effects",
+    "q": "Missense mutation means…",
+    "a": [
+      "Different amino acid in protein",
+      "Same amino acid",
+      "Early stop codon",
+      "Always no protein made"
+    ],
+    "correct": 0,
+    "explanation": "Codon changes → different amino acid."
+  },
+  {
+    "topic": "Protein Effects",
+    "q": "Nonsense mutation causes…",
+    "a": [
+      "Early stop codon leading to nonfunctional protein",
+      "Frame shifts without stop",
+      "Only synonymous codons",
+      "Only inversion"
+    ],
+    "correct": 0,
+    "explanation": "Codon becomes stop early → often nonfunctional protein."
+  },
+  {
+    "topic": "Protein Effects",
+    "q": "Frameshift mutation is typically caused by…",
+    "a": [
+      "Insertions or deletions shifting the reading frame",
+      "Only substitutions",
+      "Only chromosomal translocations",
+      "Only UV thymine dimers"
+    ],
+    "correct": 0,
+    "explanation": "Insertions/deletions shift reading frame; changes every downstream amino acid; often nonfunctional."
+  },
+  {
+    "topic": "Gene Expression",
+    "q": "Central dogma describes…",
+    "a": [
+      "DNA → mRNA → protein (via transcription & translation)",
+      "Protein → DNA → RNA",
+      "RNA → protein → DNA",
+      "Chromosomes → plasmids → operons"
+    ],
+    "correct": 0,
+    "explanation": "DNA replicated → transcribed to mRNA → translated to amino acids → proteins."
+  },
+  {
+    "topic": "Gene Expression",
+    "q": "Reverse transcription is…",
+    "a": [
+      "RNA → DNA using reverse transcriptase",
+      "DNA → RNA using RNA polymerase",
+      "Protein → RNA using ribosome",
+      "DNA repair by nuclease"
+    ],
+    "correct": 0,
+    "explanation": "Viruses convert RNA into DNA using reverse transcriptase (e.g., HIV)."
+  },
+  {
+    "topic": "Gene Expression",
+    "q": "In reverse transcription (as described), the primer binds to…",
+    "a": [
+      "RNA template",
+      "DNA template",
+      "Protein",
+      "Chromatin"
+    ],
+    "correct": 0,
+    "explanation": "Primer binds RNA template; adds deoxynucleotides to build cDNA; second DNA strand synthesized."
+  },
+  {
+    "topic": "Transcription",
+    "q": "Transcription occurs in…",
+    "a": [
+      "Cytoplasm in prokaryotes; nucleus in eukaryotes",
+      "Nucleus in prokaryotes; cytoplasm in eukaryotes",
+      "Only mitochondria",
+      "Only ribosomes"
+    ],
+    "correct": 0,
+    "explanation": "Prokaryotes: cytoplasm. Eukaryotes: nucleus."
+  },
+  {
+    "topic": "Transcription",
+    "q": "RNA polymerase reads the template strand in which direction?",
+    "a": [
+      "3'→5' (while synthesizing 5'→3')",
+      "5'→3' only",
+      "3'→3'",
+      "It reads both directions"
+    ],
+    "correct": 0,
+    "explanation": "Uses template (non-coding) strand 3'→5'; synthesizes RNA 5'→3'."
+  },
+  {
+    "topic": "Transcription",
+    "q": "During transcription initiation, RNA polymerase binds the…",
+    "a": [
+      "Promoter",
+      "Enhancer",
+      "Terminator",
+      "Operator (always)"
+    ],
+    "correct": 0,
+    "explanation": "RNA polymerase binds promoter at start of gene."
+  },
+  {
+    "topic": "Transcription",
+    "q": "Elongation means…",
+    "a": [
+      "Adding RNA nucleotides along template strand",
+      "Releasing polypeptide",
+      "Separating homologs",
+      "Gel sorting fragments"
+    ],
+    "correct": 0,
+    "explanation": "Polymerase moves along template adding RNA nucleotides."
+  },
+  {
+    "topic": "Transcription",
+    "q": "Termination occurs when…",
+    "a": [
+      "RNA polymerase hits terminator and detaches",
+      "tRNA enters A site",
+      "Ligase seals Okazaki fragments",
+      "SSB proteins fall off"
+    ],
+    "correct": 0,
+    "explanation": "Polymerase binds terminator sequence causing detachment."
+  },
+  {
+    "topic": "Gene Regulation",
+    "q": "Cis-regulatory elements are…",
+    "a": [
+      "DNA-based elements on same chromosome as regulated gene",
+      "Protein-based regulators",
+      "Only RNA-based regulators",
+      "Only found in mitochondria"
+    ],
+    "correct": 0,
+    "explanation": "DNA-based; on same chromosome as genes they regulate."
+  },
+  {
+    "topic": "Gene Regulation",
+    "q": "Promoters are located…",
+    "a": [
+      "Immediately upstream of transcription start; bind RNA pol + initiation factors",
+      "Only downstream of gene",
+      "Inside ribosome",
+      "On a different chromosome"
+    ],
+    "correct": 0,
+    "explanation": "Immediately upstream of transcription start site; bind RNA polymerase and initiation factors."
+  },
+  {
+    "topic": "Gene Regulation",
+    "q": "Operators…",
+    "a": [
+      "Bind repressors to block transcription (lac operon)",
+      "Always enhance transcription",
+      "Are ribosomal sites A/P/E",
+      "Are RNA primers"
+    ],
+    "correct": 0,
+    "explanation": "DNA sequences that bind to block transcription (lac operon)."
+  },
+  {
+    "topic": "Gene Regulation",
+    "q": "Enhancers function to…",
+    "a": [
+      "Increase transcription via activators",
+      "Stop translation at stop codon",
+      "Cut out damaged DNA",
+      "Prevent supercoiling"
+    ],
+    "correct": 0,
+    "explanation": "DNA sequences that bind activators to increase transcription."
+  },
+  {
+    "topic": "Gene Regulation",
+    "q": "Silencers…",
+    "a": [
+      "Reduce transcription via repressors",
+      "Only found in prokaryotes",
+      "Only increase transcription",
+      "Are ddNTPs"
+    ],
+    "correct": 0,
+    "explanation": "DNA sequences that bind repressors to reduce transcription."
+  },
+  {
+    "topic": "Gene Regulation",
+    "q": "Trans-regulatory elements are…",
+    "a": [
+      "Protein/RNA-based regulators",
+      "DNA-only elements near promoter",
+      "Only histones",
+      "Only telomeres"
+    ],
+    "correct": 0,
+    "explanation": "Protein/RNA-based regulators."
+  },
+  {
+    "topic": "Gene Regulation",
+    "q": "Transcription factors…",
+    "a": [
+      "Bind DNA to enhance or inhibit RNA polymerase activity",
+      "Are RNA primers",
+      "Are Okazaki fragments",
+      "Are microtubules"
+    ],
+    "correct": 0,
+    "explanation": "Proteins (activators/repressors) that recognize DNA sequences to enhance/inhibit RNA polymerase activity."
+  },
+  {
+    "topic": "Gene Regulation",
+    "q": "In lac operon, transcription happens when…",
+    "a": [
+      "Lactose is present (repressor not blocking operator)",
+      "Lactose is absent",
+      "Tryptophan is high",
+      "ddNTPs are added"
+    ],
+    "correct": 0,
+    "explanation": "Inducible: repressor binds operator when lactose absent; lactose present enables transcription."
+  },
+  {
+    "topic": "Gene Regulation",
+    "q": "Trp operon is ON when…",
+    "a": [
+      "Tryptophan is low/absent",
+      "Tryptophan is high",
+      "Lactose is present",
+      "RNA polymerase is missing"
+    ],
+    "correct": 0,
+    "explanation": "Repressible: tryptophan binds repressor when trp high; low tryptophan allows transcription."
+  },
+  {
+    "topic": "Translation",
+    "q": "Translation is…",
+    "a": [
+      "Protein synthesis",
+      "DNA replication",
+      "RNA synthesis",
+      "DNA repair"
+    ],
+    "correct": 0,
+    "explanation": "Synthesis of proteins."
+  },
+  {
+    "topic": "Translation",
+    "q": "The start codon is…",
+    "a": [
+      "AUG",
+      "UAA",
+      "UGA",
+      "UAG"
+    ],
+    "correct": 0,
+    "explanation": "Ribosome finds AUG."
+  },
+  {
+    "topic": "Translation",
+    "q": "Initiator tRNA brings which amino acid?",
+    "a": [
+      "Methionine",
+      "Glycine",
+      "Leucine",
+      "Stop factor"
+    ],
+    "correct": 0,
+    "explanation": "Carries methionine to P site."
+  },
+  {
+    "topic": "Translation",
+    "q": "During translation, the ribosome moves along mRNA…",
+    "a": [
+      "5'→3'",
+      "3'→5'",
+      "randomly",
+      "only 5'→5'"
+    ],
+    "correct": 0,
+    "explanation": "Ribosome moves 5'→3'."
+  },
+  {
+    "topic": "Translation",
+    "q": "The A site is where…",
+    "a": [
+      "New tRNA enters matching anticodon to codon",
+      "Peptide exits cell",
+      "DNA polymerase binds",
+      "Repressor binds operator"
+    ],
+    "correct": 0,
+    "explanation": "tRNA brings amino acid to A site matching anticodon to codon."
+  },
+  {
+    "topic": "Translation",
+    "q": "During elongation, what bonds form between amino acids?",
+    "a": [
+      "Peptide bonds",
+      "Hydrogen bonds between bases",
+      "Phosphodiester bonds between sugars",
+      "Ionic bonds only"
+    ],
+    "correct": 0,
+    "explanation": "Form during elongation as chain grows."
+  },
+  {
+    "topic": "Translation",
+    "q": "At a stop codon, termination occurs because…",
+    "a": [
+      "Release factors enter A site and release polypeptide",
+      "Helicase stops unwinding",
+      "Ligase detaches",
+      "Primase adds primer"
+    ],
+    "correct": 0,
+    "explanation": "Release factors enter A site at stop codon releasing polypeptide."
+  },
+  {
+    "topic": "Translation",
+    "q": "mRNA’s role is to…",
+    "a": [
+      "Carry genetic instructions from DNA",
+      "Bring amino acids directly",
+      "Seal DNA fragments",
+      "Unwind DNA"
+    ],
+    "correct": 0,
+    "explanation": "Carries genetic instruction from DNA."
+  },
+  {
+    "topic": "Translation",
+    "q": "tRNA’s role is to…",
+    "a": [
+      "Match anticodons to codons + bring amino acids",
+      "Write DNA sequence",
+      "Cut damaged DNA",
+      "Block transcription"
+    ],
+    "correct": 0,
+    "explanation": "Matches anticodons to codons and brings amino acids."
+  },
+  {
+    "topic": "Translation",
+    "q": "Ribosomes are made of…",
+    "a": [
+      "rRNA + proteins",
+      "Only DNA",
+      "Only lipids",
+      "Only transcription factors"
+    ],
+    "correct": 0,
+    "explanation": "rRNA + proteins hold mRNA and form peptide bonds."
+  },
+  {
+    "topic": "Translation",
+    "q": "From 5' to 3', ribosome site order is…",
+    "a": [
+      "E-P-A",
+      "A-P-E",
+      "P-A-E",
+      "E-A-P"
+    ],
+    "correct": 0,
+    "explanation": "3 sites: A, P, E; from 5'→3' structure is E-P-A."
+  },
+  {
+    "topic": "Translation Regulation",
+    "q": "eIFs mainly…",
+    "a": [
+      "Control initiation complex assembly",
+      "Cut out damaged DNA",
+      "Provide Mg2+ buffer for PCR",
+      "Attach primers in PCR"
+    ],
+    "correct": 0,
+    "explanation": "Eukaryotic translation initiation factors control assembly of initiation complex."
+  },
+  {
+    "topic": "Translation Regulation",
+    "q": "Which mRNA features influence initiation rates (as stated)?",
+    "a": [
+      "5' cap binding + 3' poly-A tail",
+      "Okazaki fragments + ligase",
+      "Operators + silencers only",
+      "Centromeres + telomeres only"
+    ],
+    "correct": 0,
+    "explanation": "5' cap binding and 3' poly-A tail influence initiation rates."
+  },
+  {
+    "topic": "Translation Regulation",
+    "q": "Cells can adjust translation rates in response to…",
+    "a": [
+      "Stress, nutrients, development",
+      "Only UV light",
+      "Only nondisjunction",
+      "Only plasmid presence"
+    ],
+    "correct": 0,
+    "explanation": "Rates change with stress, nutrient availability, developmental signals."
+  },
+  {
+    "topic": "PCR",
+    "q": "PCR is used to…",
+    "a": [
+      "Amplify specific DNA segments via thermal cycling",
+      "Sequence DNA via ddNTPs",
+      "Measure electrical current through pores",
+      "Make 4 haploid cells"
+    ],
+    "correct": 0,
+    "explanation": "Thermal cycling amplifies DNA segments (~35 cycles)."
+  },
+  {
+    "topic": "PCR",
+    "q": "PCR step order is…",
+    "a": [
+      "Denaturation → Annealing → Extension",
+      "Annealing → Extension → Denaturation",
+      "Extension → Denaturation → Annealing",
+      "Translation → Transcription → Replication"
+    ],
+    "correct": 0,
+    "explanation": "Denaturation, annealing, extension."
+  },
+  {
+    "topic": "PCR",
+    "q": "PCR denaturation typically uses…",
+    "a": [
+      "94–98°C",
+      "50–65°C",
+      "72°C",
+      "37°C"
+    ],
+    "correct": 0,
+    "explanation": "94–98°C breaks H-bonds; dsDNA → ss templates."
+  },
+  {
+    "topic": "PCR",
+    "q": "PCR annealing typically uses…",
+    "a": [
+      "50–65°C",
+      "94–98°C",
+      "72°C",
+      "0°C"
+    ],
+    "correct": 0,
+    "explanation": "50–65°C lets primers bind complementary sequences."
+  },
+  {
+    "topic": "PCR",
+    "q": "PCR extension typically uses…",
+    "a": [
+      "72°C",
+      "94–98°C",
+      "50–65°C",
+      "25°C"
+    ],
+    "correct": 0,
+    "explanation": "72°C; Taq polymerase extends from primers 5'→3'."
+  },
+  {
+    "topic": "PCR",
+    "q": "Taq polymerase is…",
+    "a": [
+      "Heat-stable DNA polymerase",
+      "RNA polymerase",
+      "A restriction enzyme",
+      "A ligase only"
+    ],
+    "correct": 0,
+    "explanation": "Heat-stable enzyme for PCR."
+  },
+  {
+    "topic": "PCR",
+    "q": "In PCR, dNTPs are…",
+    "a": [
+      "Building blocks for new DNA strands",
+      "Chain terminators",
+      "Protein pores",
+      "Histones"
+    ],
+    "correct": 0,
+    "explanation": "Deoxynucleotide triphosphates = nucleotides for new DNA strands."
+  },
+  {
+    "topic": "PCR",
+    "q": "PCR buffer + Mg2+ are used to…",
+    "a": [
+      "Maintain pH and provide cofactors",
+      "Force crossing over",
+      "Stop transcription",
+      "Make thymine dimers"
+    ],
+    "correct": 0,
+    "explanation": "Maintain pH and provide cofactors."
+  },
+  {
+    "topic": "PCR",
+    "q": "PCR can be used for…",
+    "a": [
+      "Virus detection, forensics, cloning, genetic testing",
+      "Only translation",
+      "Only pedigree analysis",
+      "Only karyotypes"
+    ],
+    "correct": 0,
+    "explanation": "Virus detection in patient samples, forensics, cloning, genetic testing (genes/mutations)."
+  },
+  {
+    "topic": "Sequencing",
+    "q": "Sanger sequencing determines DNA sequence by…",
+    "a": [
+      "Incorporating ddNTPs to terminate chains",
+      "Measuring pore currents",
+      "Using fluorescent stop nucleotides with short reads only",
+      "Counting phenotype ratios"
+    ],
+    "correct": 0,
+    "explanation": "Chain-termination sequencing; uses ddNTPs during cycling to determine exact sequence."
+  },
+  {
+    "topic": "Sequencing",
+    "q": "Compared to PCR, Sanger sequencing uses…",
+    "a": [
+      "One primer (one direction)",
+      "Two primers always",
+      "No primers",
+      "Only RNA primers"
+    ],
+    "correct": 0,
+    "explanation": "Sanger uses one primer one direction; PCR uses two (forward and reverse)."
+  },
+  {
+    "topic": "Sequencing",
+    "q": "Which is true?",
+    "a": [
+      "Sanger uses ddNTPs + dNTPs; PCR uses dNTPs only",
+      "PCR uses ddNTPs; Sanger uses none",
+      "Both use ddNTPs only",
+      "Neither uses nucleotides"
+    ],
+    "correct": 0,
+    "explanation": "Sanger uses both ddNTPs and dNTPs; PCR uses dNTPs only."
+  },
+  {
+    "topic": "Sequencing",
+    "q": "In Sanger sequencing, fragments are separated by…",
+    "a": [
+      "Gel electrophoresis (by size)",
+      "Spindle fibers",
+      "Karyotyping",
+      "FOIL method"
+    ],
+    "correct": 0,
+    "explanation": "Denaturation, annealing, extension + chain termination; fragments sorted by size via gel electrophoresis."
+  },
+  {
+    "topic": "Sequencing",
+    "q": "Sanger sequencing can be used to…",
+    "a": [
+      "Detect mutations and sequence PCR products",
+      "Make haploid gametes",
+      "Diagnose nondisjunction via karyotypes only",
+      "Force codominance"
+    ],
+    "correct": 0,
+    "explanation": "Detect mutation, confirm cloning worked, sequence PCR product, infer common ancestry."
+  },
+  {
+    "topic": "Sequencing",
+    "q": "Illumina sequencing typically…",
+    "a": [
+      "Uses fluorescent stop nucleotides and is very accurate (~99.9%)",
+      "Has >1 million bp reads without PCR",
+      "Gives instant data with higher error",
+      "Uses ddNTP gel bands only"
+    ],
+    "correct": 0,
+    "explanation": "Next-gen; fluorescent labeled nucleotides that stop synthesis; 50–300 bp reads; requires PCR; days; ~99.9% accuracy."
+  },
+  {
+    "topic": "Sequencing",
+    "q": "Typical Illumina read length is…",
+    "a": [
+      "50–300 bp",
+      ">1,000,000 bp",
+      "1–10 bp",
+      "Exactly 10,000 bp"
+    ],
+    "correct": 0,
+    "explanation": "Usually 50–300 base pairs."
+  },
+  {
+    "topic": "Sequencing",
+    "q": "Illumina sequencing requires…",
+    "a": [
+      "PCR amplification before sequencing",
+      "No PCR at all",
+      "Only mitochondria",
+      "Only gel electrophoresis"
+    ],
+    "correct": 0,
+    "explanation": "Requires PCR amplification before sequencing."
+  },
+  {
+    "topic": "Sequencing",
+    "q": "Illumina is used for…",
+    "a": [
+      "SNPs, RNA-seq, rare mutation detection",
+      "Only pedigree charts",
+      "Only mitosis staging",
+      "Only operon regulation"
+    ],
+    "correct": 0,
+    "explanation": "SNPs linked to disease, RNA-seq for active genes, rare mutations in liquid biopsies."
+  },
+  {
+    "topic": "Sequencing",
+    "q": "Oxford Nanopore sequencing works by…",
+    "a": [
+      "Measuring electrical current changes as ssDNA passes through a pore",
+      "Sorting ddNTP fragments on gel",
+      "Fluorescent stop nucleotides with 50–300 bp reads",
+      "Counting Hardy-Weinberg genotype ratios"
+    ],
+    "correct": 0,
+    "explanation": "Third-gen; measures current changes as ssDNA passes through protein pore; can read >1 million bp; no PCR; instant data; higher error (~99% accuracy)."
+  },
+  {
+    "topic": "Sequencing",
+    "q": "Nanopore reads can be…",
+    "a": [
+      ">1,000,000 bp",
+      "50–300 bp only",
+      "Exactly 16 combinations",
+      "Always 64"
+    ],
+    "correct": 0,
+    "explanation": "Can be over 1 million base pairs."
+  },
+  {
+    "topic": "Sequencing",
+    "q": "Nanopore sequencing requires PCR?",
+    "a": [
+      "No, it reads the original strand",
+      "Yes, always",
+      "Only in plants",
+      "Only for plasmids"
+    ],
+    "correct": 0,
+    "explanation": "No PCR needed; reads original strand."
+  },
+  {
+    "topic": "Sequencing",
+    "q": "Nanopore data is…",
+    "a": [
+      "Available instantly",
+      "Always takes days",
+      "Only available after gel electrophoresis",
+      "Only available after karyotyping"
+    ],
+    "correct": 0,
+    "explanation": "Data available instantly."
+  },
+  {
+    "topic": "Sequencing",
+    "q": "Nanopore accuracy is described as…",
+    "a": [
+      "Higher error (~99% accuracy)",
+      "~99.9% accuracy always",
+      "Perfect accuracy",
+      "Too low to be used"
+    ],
+    "correct": 0,
+    "explanation": "Higher error rates (~99% accuracy)."
+  },
+  {
+    "topic": "Sequencing",
+    "q": "Nanopore is used for…",
+    "a": [
+      "Genome assembly, chromosomal mutations, methylation, rapid pathogen ID",
+      "Only SNPs with PCR",
+      "Only dihybrid crosses",
+      "Only cytokinesis"
+    ],
+    "correct": 0,
+    "explanation": "Assemble new genome, detect chromosomal mutations, detect methylation, rapid pathogen ID."
+  },
+  {
+    "topic": "Technology",
+    "q": "Molecular cloning is…",
+    "a": [
+      "Inserting a DNA sequence into a plasmid for expression in a host",
+      "Counting alleles in population",
+      "Separating chromatids",
+      "Repairing mismatches"
+    ],
+    "correct": 0,
+    "explanation": "Isolate DNA sequence, insert into plasmid, express in host."
+  },
+  {
+    "topic": "Technology",
+    "q": "A listed cloning step is…",
+    "a": [
+      "Cut plasmid with restriction enzymes then insert gene",
+      "Use spindle microtubules",
+      "Use lac operator to translate",
+      "Use karyotype to sequence DNA"
+    ],
+    "correct": 0,
+    "explanation": "PCR amplify gene; cut plasmid w/ restriction enzymes; insert via ligase or Gibson; transform host; express gene."
+  },
+  {
+    "topic": "Technology",
+    "q": "In blue-white screening, white colonies usually mean…",
+    "a": [
+      "Plasmid has inserted DNA",
+      "Plasmid is empty",
+      "Cells are haploid",
+      "Trait is sex-linked"
+    ],
+    "correct": 0,
+    "explanation": "Blue colonies: empty plasmid; white colonies: insert present."
+  },
+  {
+    "topic": "Gene Function",
+    "q": "A knockout is…",
+    "a": [
+      "Permanent gene inactivation at DNA level",
+      "Temporary mRNA reduction",
+      "Promoter activation",
+      "PCR amplification"
+    ],
+    "correct": 0,
+    "explanation": "Permanent DNA-level inactivation; no functional protein; reveals gene role."
+  },
+  {
+    "topic": "Gene Function",
+    "q": "A knockdown is…",
+    "a": [
+      "Temporary reduction of gene expression at mRNA level",
+      "Permanent DNA deletion always",
+      "Only a chromosomal inversion",
+      "A sequencing method"
+    ],
+    "correct": 0,
+    "explanation": "Temporary mRNA-level reduction via RNAi; shows gene function by reduced protein effect."
+  },
+  {
+    "topic": "Gene Function",
+    "q": "Complementation (in KO/KD context) is…",
+    "a": [
+      "Reintroducing wild-type gene to see if phenotype is rescued",
+      "Crossing two mutants to see if different genes",
+      "Using enhancers to block transcription",
+      "Using PCR to find SNPs"
+    ],
+    "correct": 0,
+    "explanation": "Add wild-type gene back into KO/KD line to test if phenotype is due to that gene."
+  },
+  {
+    "topic": "Gene Function",
+    "q": "Which statement matches KO vs KD?",
+    "a": [
+      "KO: stable heritable loss; KD: temporary partial reduction",
+      "KO: temporary; KD: permanent",
+      "Both only affect translation",
+      "Both require gel electrophoresis"
+    ],
+    "correct": 0,
+    "explanation": "KOs: complete loss, stable & heritable. KDs: partial, temporary. Use KD for essential genes; KO for permanent models."
+  },
+  {
+    "topic": "Gene Function",
+    "q": "RNA interference (RNAi) works by…",
+    "a": [
+      "Using siRNA/shRNA to degrade mRNA",
+      "Using ddNTPs to stop DNA synthesis",
+      "Using helicase to unwind proteins",
+      "Using microtubules to separate bases"
+    ],
+    "correct": 0,
+    "explanation": "Uses siRNA or shRNA to degrade mRNA."
+  },
+  {
+    "topic": "Gene Function",
+    "q": "CRISPR interference (CRISPRi) uses…",
+    "a": [
+      "Dead Cas9 to block transcription without cutting DNA",
+      "Active Cas9 to cut all DNA",
+      "ddNTPs to terminate chains",
+      "Telomerase to extend genes"
+    ],
+    "correct": 0,
+    "explanation": "Dead Cas9 binds DNA to block transcription without cutting (specialized KD)."
+  },
+  {
+    "topic": "Gene Function",
+    "q": "Homologous recombination in KO is…",
+    "a": [
+      "Replacing a gene with a nonfunctional construct precisely",
+      "Measuring pore current",
+      "Counting phenotype ratios",
+      "Only used for translation"
+    ],
+    "correct": 0,
+    "explanation": "Traditional precise method to replace gene with nonfunctional construct."
+  },
+  {
+    "topic": "Gene Function",
+    "q": "TALENs are…",
+    "a": [
+      "Engineered nucleases for sequence-specific knockout",
+      "RNA primers",
+      "Operon repressors",
+      "Gel dyes"
+    ],
+    "correct": 0,
+    "explanation": "Engineered nucleases recognizing specific DNA sequences to cause knockout."
+  }
+]
